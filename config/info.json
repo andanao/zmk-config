@@ -45,7 +45,7 @@
           { "label": "LWR", "row": 3, "col": 4, "x": 4, "y": 3 },
           { "label": "SPC", "row": 3, "col": 5, "x": 5, "y": 3 },
           { "label": "ENT", "row": 3, "col": 7, "x": 8, "y": 3 },
-          { "label": "RSE", "row": 3, "col": 8, "x": 9, "y": 3 },
+          { "label": "RSE", "row": 3, "col": 8, "x": 9, "y": 3 }
      ]
     }
   }
