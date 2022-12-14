@@ -28,7 +28,6 @@
           { "label": ";", "row": 1, "col": 11, "x": 13, "y": 1 },
           { "label": "'", "row": 1, "col": 12, "x": 14, "y": 1 },
 
-<<<<<<< HEAD
           { "label": "LShift", "row": 2, "col": 0, "x": 0, "y": 2 },
           { "label": "Z", "row": 2, "col": 1, "x": 1, "y": 2 },
           { "label": "X", "row": 2, "col": 2, "x": 2, "y": 2 },
@@ -41,28 +40,6 @@
           { "label": ".", "row": 2, "col": 10, "x": 12, "y": 2 },
           { "label": "/", "row": 2, "col": 11, "x": 13, "y": 2 },
           { "label": "Esc", "row": 2, "col": 12, "x": 14, "y": 2 },
-=======
-        { "label": "LShift", "row": 2, "col": 0, "x": 0, "y": 2 },
-        { "label": "Z", "row": 2, "col": 1, "x": 1, "y": 2 },
-        { "label": "X", "row": 2, "col": 2, "x": 2, "y": 2 },
-        { "label": "C", "row": 2, "col": 3, "x": 3, "y": 2 },
-        { "label": "V", "row": 2, "col": 4, "x": 4, "y": 2 },
-        { "label": "B", "row": 2, "col": 5, "x": 5, "y": 2 },
-        { "label": "N", "row": 2, "col": 7, "x": 9, "y": 2 },
-        { "label": "M", "row": 2, "col": 8, "x": 10, "y": 2 },
-        { "label": ",", "row": 2, "col": 9, "x": 11, "y": 2 },
-        { "label": ".", "row": 2, "col": 10, "x": 12, "y": 2 },
-        { "label": "/", "row": 2, "col": 11, "x": 13, "y": 2 },
-        { "label": "Esc", "row": 2, "col": 12, "x": 14, "y": 2 },
-
-        { "label": "GUI", "row": 3, "col": 3, "x": 3.5, "y": 3.25 },
-        { "label": "LWR", "row": 3, "col": 4, "x": 4.5, "y": 3.25, "r": 13, "ry": 4.25 },
-        { "label": "SPC", "row": 3, "col": 5, "x": 5.5, "y": 3.05, "h": 1.5, "r": 26, "ry": 4.6 },
-        { "label": "ENT", "row": 3, "col": 7, "x": 8.5, "y": 3.05, "h": 1.5, "r": -26, "rx": 9.5, "ry": 4.6 },
-        { "label": "RSE", "row": 3, "col": 8, "x": 9.5, "y": 3.25, "r": -13, "rx": 10.5, "ry": 4.25 },
-        { "label": "ALT", "row": 3, "col": 9, "x": 10.5, "y": 3.25 }
-
->>>>>>> parent of 8dc6deb (clear bottom row)
 
           { "label": "GUI", "row": 3, "col": 3, "x": 3, "y": 3 },
           { "label": "LWR", "row": 3, "col": 4, "x": 4, "y": 3 },
