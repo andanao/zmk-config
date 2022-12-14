@@ -49,7 +49,10 @@
           { "label": "SPC", "row": 3, "col": 6, "x": 6, "y": 3 },
           { "label": "SPC", "row": 3, "col": 7, "x": 7, "y": 3 },
           { "label": "ENT", "row": 3, "col": 8, "x": 8, "y": 3 },
-          { "label": "RSE", "row": 3, "col": 9, "x": 9, "y": 3 }
+          { "label": "RSE", "row": 3, "col": 9, "x": 9, "y": 3 },
+          { "label": "RSE", "row": 3, "col": 10, "x": 10, "y": 3 },
+          { "label": "RSE", "row": 3, "col": 11, "x": 11, "y": 3 },
+          { "label": "RSE", "row": 3, "col": 12, "x": 12, "y": 3 }
      ]
     }
   }
