@@ -1,6 +1,6 @@
-"naked48":{
+{
   "layouts": {
-    "LAYOUT": {
+    "naked48": {
       "layout": [
           { "label": "Esc", "row": 0, "col": 0, "x": 0, "y": 0 },
           { "label": "Q", "row": 0, "col": 1, "x": 1, "y": 0 },
