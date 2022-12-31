@@ -19,17 +19,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-<<<<<<< HEAD
           &kp TAB   &kp Q   &kp W     &kp E       &kp R   &kp T           &kp Y      &kp U      &kp I    &kp O     &kp P    &kp BSPC
  &kp LEFT_CONTROL   &kp A   &kp S     &kp D       &kp F   &kp G           &kp H      &kp J      &kp K    &kp L  &kp SEMI    &kp RCMD
             &mo 3   &kp Z   &kp X     &kp C       &kp V   &kp B           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &kp RSHIFT
                                    &kp LGUI  &kp LSHIFT   &mo 2           &mo 1  &kp SPACE   &kp RALT
-=======
-       &kp TAB   &kp Q   &kp W     &kp E            &kp R   &kp T           &kp Y      &kp U      &kp I    &kp O     &kp P          &kp BSPC
- &mt LCTRL ESC   &kp A   &kp S     &kp D            &kp F   &kp G           &kp H      &kp J      &kp K    &kp L  &kp SEMI  &kp SINGLE_QUOTE
-         &mo 3   &kp Z   &kp X     &kp C            &kp V   &kp B           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH        &kp RSHIFT
-                                &kp LALT  &mt LSHFT SPACE   &mo 2           &mo 1  &kp SPACE   &kp LGUI
->>>>>>> corne_build_fix
             >;
         };
 
@@ -41,17 +34,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-<<<<<<< HEAD
    &kp TAB  &kp N1  &kp N2    &kp N3  &kp N4     &kp N5            &kp N6    &kp N7    &kp N8     &kp N9  &kp N0   &kp BSPC
     &trans  &trans  &trans    &trans  &trans     &trans          &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &trans  &kp ENTER
  &kp LSHFT   &kp Z  &trans    &trans  &trans     &trans            &trans    &trans    &trans     &trans  &trans     &trans
                             &kp LGUI   &mo 2  &kp SPACE            &trans    &trans  &kp RALT
-=======
-   &kp TAB  &kp N1  &kp N2    &kp N3  &kp N4             &kp N5                 &kp N6    &kp N7    &kp N8     &kp N9  &kp N0    &none
- &kp LCTRL   &none   &none     &none   &none              &none               &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &trans  &kp RET
- &kp LSHFT   &none   &none     &none   &none              &none          &kp BACKSPACE   &kp DEL    &trans     &trans  &trans   &trans
-                            &kp LALT  &trans  &kp LC(BACKSPACE)                  &none    &trans  &kp LGUI
->>>>>>> corne_build_fix
             >;
         };
 
@@ -63,7 +49,6 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-<<<<<<< HEAD
    &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp STAR  &kp LPAR  &kp RPAR   &kp BSPC
  &kp LCTRL    &trans  &trans    &trans    &trans     &trans          &kp MINUS  &kp EQUAL  &kp LBKT  &kp RBKT  &kp BSLH  &kp GRAVE
  &kp LSHFT    &trans  &trans    &trans    &trans     &trans          &kp UNDER   &kp PLUS  &kp LBRC  &kp RBRC  &kp PIPE  &kp TILDE
@@ -77,21 +62,6 @@
  &trans  &trans  &trans  &trans  &trans  &trans                &trans     &kp N4         &kp N5  &kp N6  &kp COLON  &kp ENTER
  &trans  &trans  &trans  &trans  &trans  &trans                &trans     &kp N1         &kp N2  &kp N3     &trans     &trans
                          &trans  &trans  &trans          &kp NUMBER_0  &kp SPACE  &kp undefined
-=======
-   &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT            &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
- &kp LCTRL     &none   &none     &none     &none      &none            &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
- &kp LSHFT     &none   &none     &none     &none      &none            &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
-                              &kp LALT     &none      &none          &kp LC(DEL)    &kp RET      &kp LGUI
-            >;
-        };
-
-        numbers {
-            bindings = <
- &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4          &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &kp BACKSPACE
-  &kp LCTRL         &none         &none         &none         &none         &none          &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON      &kp ENTER
-      &none    &kp LSHIFT         &none         &none         &none         &none           &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA          &none
-                                             &kp LALT   &kp LS(TAB)       &kp TAB          &kp NUMBER_0     &kp SPACE    &kp PERIOD
->>>>>>> corne_build_fix
             >;
         };
     };
