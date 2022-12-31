@@ -59,10 +59,10 @@
 
         numbers {
             bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans                &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans                &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans
-                         &trans  &trans  &trans          &kp NUMBER_0     &kp SPACE    &kp PERIOD
+  &none   &none   &none   &none        &none    &none          &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE      &none
+  &none   &none   &none   &none        &none    &none          &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON  &kp ENTER
+ &trans   &none   &none   &none        &none    &none           &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA      &none
+                          &none  &kp LS(TAB)  &kp TAB          &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
     };
