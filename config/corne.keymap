@@ -36,9 +36,9 @@
 
             bindings = <
    &kp TAB  &kp N1  &kp N2    &kp N3  &kp N4             &kp N5                 &kp N6    &kp N7    &kp N8     &kp N9  &kp N0    &none
-     &none   &none   &none     &none   &none              &none               &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &trans  &kp RET
- &kp LSHFT  &trans  &trans    &trans  &trans             &trans          &kp BACKSPACE   &kp DEL    &trans     &trans  &trans   &trans
-                            &kp LGUI  &trans  &kp LC(BACKSPACE)                  &none    &trans  &kp RALT
+ &kp LCTRL   &none   &none     &none   &none              &none               &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &trans  &kp RET
+ &kp LSHFT   &none   &none     &none   &none              &none          &kp BACKSPACE   &kp DEL    &trans     &trans  &trans   &trans
+                            &kp LALT  &trans  &kp LC(BACKSPACE)                  &none    &trans  &kp LGUI
             >;
         };
 
@@ -53,25 +53,16 @@
    &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT            &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
  &kp LCTRL     &none   &none     &none     &none      &none            &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
  &kp LSHFT     &none   &none     &none     &none      &none            &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
-                              &kp LGUI     &none      &none          &kp LC(DEL)    &kp RET      &kp RALT
+                              &kp LALT     &none      &none          &kp LC(DEL)    &kp RET      &kp LGUI
             >;
         };
 
         numbers {
             bindings = <
  &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4          &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &kp BACKSPACE
-      &none         &none         &none         &none         &none         &none          &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON      &kp ENTER
-      &none         &none         &none         &none         &none         &none           &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA          &none
-                                                &none   &kp LS(TAB)       &kp TAB          &kp NUMBER_0     &kp SPACE    &kp PERIOD
-            >;
-        };
-
-        Layer__4 {
-            bindings = <
- &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
- &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans
-                         &trans  &trans  &trans          &trans  &trans  &trans
+  &kp LCTRL         &none         &none         &none         &none         &none          &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON      &kp ENTER
+      &none    &kp LSHIFT         &none         &none         &none         &none           &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA          &none
+                                             &kp LALT   &kp LS(TAB)       &kp TAB          &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
     };
