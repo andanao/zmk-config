@@ -35,10 +35,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-   &kp TAB  &kp N1  &kp N2    &kp N3  &kp N4  &kp N5                     &kp N6         &kp N7    &kp N8       &kp N9  &kp N0    &none
- &kp LCTRL   &none   &none     &none   &none   &none                   &kp LEFT       &kp DOWN    &kp UP    &kp RIGHT   &none  &kp RET
- &kp LSHFT   &none   &none     &none   &none   &none          &kp LC(BACKSPACE)  &kp BACKSPACE   &kp DEL  &kp LC(DEL)   &none   &trans
-                            &kp LALT  &trans   &none                      &none         &trans  &kp LGUI
+   &kp TAB   &kp N1     &kp N2     &kp N3    &kp N4   &kp N5                     &kp N6         &kp N7    &kp N8       &kp N9  &kp N0    &none
+ &kp LCTRL  &kp INS  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END                   &kp LEFT       &kp DOWN    &kp UP    &kp RIGHT   &none  &kp RET
+ &kp LSHFT    &none      &none      &none     &none    &none          &kp LC(BACKSPACE)  &kp BACKSPACE   &kp DEL  &kp LC(DEL)   &none   &trans
+                                 &kp LALT    &trans    &none                      &none         &trans  &kp LGUI
             >;
         };
 
@@ -50,10 +50,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-   &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
- &kp LCTRL     &none   &none     &none     &none      &none          &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
- &kp LSHFT     &none   &none     &none     &none      &none          &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
-                              &kp LALT     &none      &none              &none    &kp RET      &kp LGUI
+   &kp TAB    &kp EXCL     &kp AT   &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
+ &kp LCTRL  &kp INSERT  &kp PG_UP  &kp PG_DN  &kp HOME    &kp END          &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
+ &kp LSHFT       &none      &none      &none     &none      &none          &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
+                                    &kp LALT     &none      &none              &none    &kp RET      &kp LGUI
             >;
         };
 
