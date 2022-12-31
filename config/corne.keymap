@@ -20,10 +20,10 @@
             //                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
 
             bindings = <
-   &kp TAB   &kp Q   &kp W     &kp E       &kp R   &kp T           &kp Y      &kp U      &kp I    &kp O     &kp P   &kp BSPC
- &kp LCTRL   &kp A   &kp S     &kp D       &kp F   &kp G           &kp H      &kp J      &kp K    &kp L  &kp SEMI  &kp ENTER
- &kp LSHFT   &kp Z   &kp X     &kp C       &kp V   &kp B           &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH   &kp RGUI
-                            &kp LALT  &kp LSHIFT   &mo 2           &mo 1  &kp SPACE   &kp RALT
+              &kp TAB   &kp Q   &kp W     &kp E       &kp R   &kp T           &kp Y      &kp U         &kp I    &kp O     &kp P          &kp BSPC
+ &mt LEFT_CONTROL ESC   &kp A   &kp S     &kp D       &kp F   &kp G           &kp H      &kp J         &kp K    &kp L  &kp SEMI  &kp SINGLE_QUOTE
+                &mo 3   &kp Z   &kp X     &kp C       &kp V   &kp B           &kp N      &kp M     &kp COMMA  &kp DOT  &kp FSLH          &kp RGUI
+                                       &kp LALT  &kp LSHIFT   &mo 2           &mo 1  &kp SPACE  &kp LEFT_GUI
             >;
         };
 
@@ -35,10 +35,10 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-    &kp TAB        &kp N1        &kp N2        &kp N3        &kp N4        &kp N5            &kp N6    &kp N7    &kp N8     &kp N9  &kp N0  &kp BSPC
- &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4          &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &trans    &trans
-  &kp LSHFT        &trans        &trans        &trans        &trans        &trans            &trans    &trans    &trans     &trans  &trans    &trans
-                                             &kp LGUI        &trans     &kp SPACE           &kp RET    &trans  &kp RALT
+   &kp TAB  &trans  &trans    &trans  &trans  &trans            &trans          &trans  &trans     &trans  &trans  &kp DELETE
+    &trans  &trans  &trans    &trans  &trans  &trans          &kp LEFT        &kp DOWN  &kp UP  &kp RIGHT  &trans      &trans
+ &kp LSHFT  &trans  &trans    &trans  &trans  &trans            &trans          &trans  &trans     &trans  &trans      &trans
+                            &kp LGUI  &trans  &trans            &trans  &kp LC(DELETE)  &trans
             >;
         };
 
@@ -50,10 +50,19 @@
             //                    | GUI |     | SPC |   | ENT |     | ALT |
 
             bindings = <
-   &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp KP_MULTIPLY  &kp LPAR  &kp RPAR   &kp BSPC
- &kp LCTRL    &trans  &trans    &trans    &trans     &trans          &kp MINUS  &kp EQUAL         &kp LBKT  &kp RBKT  &kp BSLH  &kp GRAVE
- &kp LSHFT    &trans  &trans    &trans    &trans     &trans          &kp UNDER   &kp PLUS         &kp LBRC  &kp RBRC  &kp PIPE  &kp TILDE
-                              &kp LGUI    &trans  &kp SPACE            &kp RET     &trans         &kp RALT
+   &kp TAB  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT                  &kp CARET        &kp AMPS  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp ASTERISK   &kp BSPC
+ &kp LCTRL    &trans  &trans    &trans    &trans     &trans                  &kp MINUS       &kp EQUAL              &kp LBKT               &kp RBKT      &kp BSLH  &kp GRAVE
+ &kp LSHFT    &trans  &trans    &trans    &trans     &trans                  &kp UNDER        &kp PLUS              &kp LBRC               &kp RBRC      &kp PIPE  &kp TILDE
+                              &kp LGUI    &trans     &trans          &kp LS(BACKSPACE)  &kp LS(DELETE)              &kp RALT
+            >;
+        };
+
+        numpad {
+            bindings = <
+ &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4          &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &kp BACKSPACE
+        &kp           &kp           &kp           &kp           &kp           &kp              &kp PLUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON        &kp RET
+     &trans           &kp           &kp           &kp           &kp           &kp             &kp MINUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp undefined            &kp
+                                                  &kp   &kp LS(TAB)       &kp TAB          &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
     };
