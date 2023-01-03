@@ -13,7 +13,6 @@
         compatible = "zmk,keymap";
 
         default_layer {
-
             bindings = <
        &kp TAB   &kp Q   &kp W     &kp E            &kp R   &kp T           &kp Y      &kp U      &kp I    &kp O     &kp P          &kp BSPC
  &mt LCTRL ESC   &kp A   &kp S     &kp D            &kp F   &kp G           &kp H      &kp J      &kp K    &kp L  &kp SEMI  &kp SINGLE_QUOTE
@@ -23,22 +22,20 @@
         };
 
         lower_layer {
-
             bindings = <
-   &kp TAB   &kp N1     &kp N2     &kp N3    &kp N4   &kp N5                     &kp N6         &kp N7    &kp N8       &kp N9  &kp N0    &none
- &kp LCTRL  &kp INS  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END                   &kp LEFT       &kp DOWN    &kp UP    &kp RIGHT   &none  &kp RET
- &kp LSHFT    &none      &none      &none     &none    &none          &kp LC(BACKSPACE)  &kp BACKSPACE   &kp DEL  &kp LC(DEL)   &none   &trans
-                                 &kp LALT    &trans    &none                      &none         &trans  &kp LGUI
+   &kp TAB        &kp N1     &kp N2     &kp N3    &kp N4   &kp N5                     &kp N6         &kp N7    &kp N8       &kp N9  &kp N0    &none
+ &kp LCTRL  &kp LEFT_GUI  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END                   &kp LEFT       &kp DOWN    &kp UP    &kp RIGHT   &none  &kp RET
+ &kp LSHFT         &none      &none      &none   &kp INS    &none          &kp LC(BACKSPACE)  &kp BACKSPACE   &kp DEL  &kp LC(DEL)   &none   &trans
+                                      &kp LALT    &trans    &none                      &none         &trans  &kp LGUI
             >;
         };
 
         raise_layer {
-
             bindings = <
-   &kp TAB    &kp EXCL     &kp AT   &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
- &kp LCTRL  &kp INSERT  &kp PG_UP  &kp PG_DN  &kp HOME    &kp END          &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
- &kp LSHFT       &none      &none      &none     &none      &none          &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
-                                    &kp LALT     &none      &none              &none    &kp RET      &kp LGUI
+   &kp TAB  &kp EXCL     &kp AT   &kp HASH  &kp DLLR  &kp PRCNT          &kp CARET   &kp AMPS  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS   &kp BSPC
+ &kp LCTRL  &kp LGUI  &kp PG_UP  &kp PG_DN  &kp HOME    &kp END          &kp MINUS  &kp EQUAL      &kp LBKT              &kp RBKT               &kp BSLH  &kp GRAVE
+ &kp LSHFT     &none      &none      &none   &kp INS      &none          &kp UNDER   &kp PLUS      &kp LBRC              &kp RBRC               &kp PIPE  &kp TILDE
+                                  &kp LALT     &none      &none              &none    &kp RET      &kp LGUI
             >;
         };
 
