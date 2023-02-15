@@ -30,19 +30,19 @@
 
         default_layer {
             bindings = <
-      &kp TAB  &kp Q  &kp W     &kp E            &kp R  &kp T    &kp Y      &kp U      &kp I    &kp O     &kp P          &kp BSPC
+      &kp TAB  &kp Q  &kp W     &kp E            &kp R  &kp T    &kp Y      &kp U      &kp I    &kp O     &kp P             &none
 &mt LCTRL ESC  &kp A  &kp S     &kp D            &kp F  &kp G    &kp H      &kp J      &kp K    &kp L  &kp SEMI  &kp SINGLE_QUOTE
-        &mo 3  &kp Z  &kp X     &kp C            &kp V  &kp B    &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH        &kp RSHIFT
+        &mo 3  &kp Z  &kp X     &kp C            &kp V  &kp B    &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH             &none
                              &kp LALT  &mt LSHFT SPACE  &mo 2    &mo 1  &kp SPACE   &kp LGUI
             >;
         };
 
         lower_layer {
             bindings = <
-  &kp TAB         &none      &none      &none     &none    &none                &none          &none     &none        &none  &none    &none
-&kp LCTRL  &kp LEFT_GUI  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END             &kp LEFT       &kp DOWN    &kp UP    &kp RIGHT  &none  &kp RET
-&kp LSHFT         &none      &none      &none   &kp INS    &none    &kp LC(BACKSPACE)  &kp BACKSPACE   &kp DEL  &kp LC(DEL)  &none   &trans
-                                     &kp LALT    &trans    &none                &none         &trans  &kp LGUI
+  &kp TAB         &none      &none      &none     &none    &none       &none     &none     &none        &none  &none    &none
+&kp LCTRL  &kp LEFT_GUI  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END    &kp LEFT  &kp DOWN    &kp UP    &kp RIGHT  &none  &kp RET
+&kp LSHFT         &none      &none      &none   &kp INS    &none       &none     &none   &kp DEL  &kp LC(DEL)  &none   &trans
+                                     &kp LALT    &trans    &none       &none    &trans  &kp LGUI
             >;
         };
 
