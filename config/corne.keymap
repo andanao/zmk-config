@@ -15,13 +15,11 @@
         backspace {
             bindings = <&kp BACKSPACE>;
             key-positions = <19 20>;
-            layers = <0>;
         };
 
         c_backspace {
             bindings = <&kp LC(BACKSPACE)>;
             key-positions = <20 21>;
-            layers = <0>;
         };
 
         new_combo {
