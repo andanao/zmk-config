@@ -42,7 +42,12 @@
             key-positions = <14 15>;
         };
 
-        tab{
+        admin_layer{
+            bindings = <&mo 4>;
+            key-positions = <39 34>;
+        };
+
+       tab{
             bindings = <&kp TAB>;
             key-positions = <15 16>;
         };
