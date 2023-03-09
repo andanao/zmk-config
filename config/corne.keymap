@@ -33,7 +33,7 @@
         };
 
         escape{
-            bindings = <&mo 3>;
+            bindings = <&kp ESC>;
             key-positions = <13 14>;
         };
 
