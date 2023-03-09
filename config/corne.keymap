@@ -12,37 +12,37 @@
     combos {
         compatible = "zmk,combos";
 
-        l_ctrl{
+        l_ctrl {
             bindings = <&kp LCTRL>;
             key-positions = <4 16>;
         };
 
-        r_ctrl{
+        r_ctrl {
             bindings = <&kp RCTRL>;
             key-positions = <7 19>;
         };
 
-        caps_word{
+        caps_word {
             bindings = <&caps_word>;
             key-positions = <6 7 18 19>;
         };
 
-        escape{
+        escape {
             bindings = <&kp ESC>;
             key-positions = <13 14>;
         };
 
-        num_layer{
+        num_layer {
             bindings = <&mo 3>;
             key-positions = <14 15>;
         };
 
-        admin_layer{
+        admin_layer {
             bindings = <&mo 4>;
             key-positions = <39 34>;
         };
 
-       tab{
+        tab {
             bindings = <&kp TAB>;
             key-positions = <15 16>;
         };
@@ -61,7 +61,15 @@
             bindings = <&kp DEL>;
             key-positions = <19 21>;
         };
+    };
 
+    macros {
+        name: name {
+            compatible = "zmk,behavior-macro";
+            label = "new_macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(A) &kp D &kp R &kp I &kp A &kp N &kp SPACE &kp LS(D) &kp A &kp N &kp A &kp O &kp MINUS &kp LS(S) &kp C &kp H &kp R &kp O &kp E &kp D &kp E &kp R>;
+        };
     };
 
     keymap {
@@ -69,46 +77,46 @@
 
         default_layer {
             bindings = <
-&none  &kp Q  &kp W     &kp E       &kp R     &kp T    &kp Y  &kp U      &kp I      &kp O     &kp P       &none
-&none  &kp A  &kp S     &kp D       &kp F     &kp G    &kp H  &kp J      &kp K      &kp L     &kp SEMI    &none
-&none  &kp Z  &kp X     &kp C       &kp V     &kp B    &kp N  &kp M      &kp COMMA  &kp DOT   &kp FSLH    &none
-                        &kp LALT    &kp LSHFT &mo 2    &mo 1  &kp SPACE  &kp LGUI
+&none  &kp Q  &kp W     &kp E      &kp R  &kp T    &kp Y      &kp U      &kp I    &kp O     &kp P  &none
+&none  &kp A  &kp S     &kp D      &kp F  &kp G    &kp H      &kp J      &kp K    &kp L  &kp SEMI  &none
+&none  &kp Z  &kp X     &kp C      &kp V  &kp B    &kp N      &kp M  &kp COMMA  &kp DOT  &kp FSLH  &none
+                     &kp LALT  &kp LSHFT  &mo 2    &mo 1  &kp SPACE   &kp LGUI
             >;
         };
 
         lower_layer {
             bindings = <
-&none  &none         &none      &none      &none     &none       &none     &none     &none      &none      &none    &none
-&none  &kp LEFT_GUI  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END     &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &none    &none
-&none  &none         &none      &none      &kp INS   &none       &none     &none     &none      &none      &none    &none
-                                &kp LALT   &trans    &none       &none     &trans    &kp LGUI
+&none         &none      &none      &none     &none    &none       &none     &none     &none      &none  &none  &none
+&none  &kp LEFT_GUI  &kp PG_UP  &kp PG_DN  &kp HOME  &kp END    &kp LEFT  &kp DOWN    &kp UP  &kp RIGHT  &none  &none
+&none         &none      &none      &none   &kp INS    &none       &none     &none     &none      &none  &none  &none
+                                 &kp LALT    &trans    &none       &none    &trans  &kp LGUI
             >;
         };
 
         raise_layer {
             bindings = <
-&none  &kp EXCL   &kp AT     &kp HASH   &kp DLLR     &kp PRCNT  &kp ASTERISK   &kp AMPS          &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS  &kp CARET   &none
-&none  &kp LGUI   &kp PG_UP  &kp PG_DN  &kp HOME     &kp END    &kp KP_MINUS   &kp UNDERSCORE    &kp LBKT               &kp RBKT               &kp BSLH    &none
-&none  &none      &none      &none      &kp INS      &none      &kp KP_PLUS    &kp EQUAL         &kp LBRC               &kp RBRC               &kp PIPE    &none
-                             &kp LALT   &none        &none      &none          &kp RET           &kp LGUI
+&none  &kp EXCL     &kp AT   &kp HASH  &kp DLLR  &kp PRCNT    &kp ASTERISK        &kp AMPS  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET  &none
+&none  &kp LGUI  &kp PG_UP  &kp PG_DN  &kp HOME    &kp END    &kp KP_MINUS  &kp UNDERSCORE              &kp LBKT               &kp RBKT   &kp BSLH  &none
+&none     &none      &none      &none   &kp INS      &none     &kp KP_PLUS       &kp EQUAL              &kp LBRC               &kp RBRC   &kp PIPE  &none
+                             &kp LALT     &none      &none           &none         &kp RET              &kp LGUI
             >;
         };
 
         numbers {
             bindings = <
-&none  &none         &none     &none      &none         &none     &kp ASTERISK    &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
-&none  &kp LEFT_GUI  &none     &none      &caps_word    &none     &kp KP_MINUS    &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &kp COLON      &none
-&none  &kp LSHIFT    &none     &none      &none         &none     &kp KP_PLUS     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp COMMA      &none
-                               &kp LALT   &kp LS(TAB)   &kp TAB   &kp NUMBER_0    &kp SPACE     &kp PERIOD
+&none         &none  &none     &none        &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
+&none  &kp LEFT_GUI  &none     &none   &caps_word    &none    &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON  &none
+&none    &kp LSHIFT  &none     &none        &none    &none     &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA  &none
+                            &kp LALT  &kp LS(TAB)  &kp TAB    &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
 
         admin {
             bindings = <
-&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none        &none              &none         &none       &bt BT_CLR   &none
-&none  &none         &none         &none         &none         &none         &kp C_PREV   &kp C_VOLUME_DOWN  &kp C_VOL_UP  &kp C_NEXT  &none        &none
-&none  &none         &none         &none         &none         &none         &none        &none              &none         &none       &none        &none
-                                   &none         &none         &none         &none        &kp C_PLAY_PAUSE   &none
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &none              &none         &none       &none  &bt BT_CLR  &none
+&none         &none         &none         &none         &name         &none    &kp C_PREV  &kp C_VOLUME_DOWN  &kp C_VOL_UP  &kp C_NEXT       &none  &none
+&none         &none         &none         &none         &none         &none         &none              &none         &none       &none       &none  &none
+                                          &none         &none         &none         &none   &kp C_PLAY_PAUSE         &none
             >;
         };
     };
