@@ -24,7 +24,7 @@
 
         caps_word{
             bindings = <&caps_word>;
-            key-positions = <6 7 19 20>;
+            key-positions = <6 7 18 19>;
         };
 
         escape{
