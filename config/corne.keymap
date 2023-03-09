@@ -22,11 +22,6 @@
             key-positions = <7 19>;
         };
 
-        num_layer{
-            bindings = <&mo 3>;
-            key-positions = <13 14>;
-        };
-
         caps_word{
             bindings = <&caps_word>;
             key-positions = <6 7 19 20>;
