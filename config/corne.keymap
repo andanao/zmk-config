@@ -12,6 +12,41 @@
     combos {
         compatible = "zmk,combos";
 
+        l_ctrl{
+            bindings = <&kp LCTRL>;
+            key-positions = <4 16>;
+        };
+
+        r_ctrl{
+            bindings = <&kp RCTRL>;
+            key-positions = <7 19>;
+        };
+
+        num_layer{
+            bindings = <&mo 3>;
+            key-positions = <13 14>;
+        };
+
+        caps_word{
+            bindings = <&caps_word>;
+            key-positions = <6 7 19 20>;
+        };
+
+        escape{
+            bindings = <&mo 3>;
+            key-positions = <13 14>;
+        };
+
+        num_layer{
+            bindings = <&mo 3>;
+            key-positions = <14 15>;
+        };
+
+        tab{
+            bindings = <&kp tab>;
+            key-positions = <15 16>;
+        };
+
         backspace {
             bindings = <&kp BACKSPACE>;
             key-positions = <19 20>;
@@ -26,6 +61,7 @@
             bindings = <&kp DEL>;
             key-positions = <19 21>;
         };
+
     };
 
     keymap {
