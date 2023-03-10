@@ -7,3 +7,6 @@ Currently working on transitioning and tuning a 3x5 Corne
 Inspiration:
 [[https://github.com/urob/zmk-config#timeless-homerow-mods][urob/zmk-config]]
 [[https://github.com/manna-harbour/miryoku][manna-harbour/miryoku]]
+
+
+Using [[https://github.com/urob/zmk-nodefree-config][urob/zmk-nodefree-config]] for easier coding
