@@ -1,0 +1,9 @@
+* ZMK Config
+:PROPERTIES:
+:ID:       e5d6c989-7bec-41a5-b37f-e9c3034b96d9
+:END:
+Currently working on transitioning and tuning a 3x5 Corne
+
+Inspiration:
+[[https://github.com/urob/zmk-config#timeless-homerow-mods][urob/zmk-config]]
+[[https://github.com/manna-harbour/miryoku][manna-harbour/miryoku]]
