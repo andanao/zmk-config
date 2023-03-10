@@ -76,37 +76,37 @@
 
         default_layer {
             bindings = <
-none  &kp Q  &kp W     &kp E      &kp R         &kp T         &kp Y      &kp U      &kp I    &kp O     &kp P  &none
-&none  &kp A  &kp S     &kp D      &kp F         &kp G         &kp H      &kp J      &kp K    &kp L  &kp SEMI  &none
-&none  &kp Z  &kp X     &kp C      &kp V         &kp B         &kp N      &kp M      &kp COMMA  &kp DOT  &kp FSLH  &none
+&none  &kp Q  &kp W     &kp E      &kp R      &kp T         &kp Y      &kp U      &kp I    &kp O     &kp P  &none
+&none  &kp A  &kp S     &kp D      &kp F      &kp G         &kp H      &kp J      &kp K    &kp L  &kp SEMI  &none
+&none  &kp Z  &kp X     &kp C      &kp V      &kp B         &kp N      &kp M      &kp COMMA  &kp DOT  &kp FSLH  &none
                      &kp LALT      &mt LSHFT ESC &lt 2 TAB     &mo 1      &kp SPACE   &kp LGUI
             >;
         };
 
         lower_layer {
             bindings = <
-&none         &none      &none      &none        &none       &none       &none     &none     &none      &none      &none  &none
-&none         &none      &kp PG_UP  &kp PG_DN    &kp HOME    &kp END     &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &none  &none
-&none         &none      &none      &none        &kp INS     &none       &none     &none     &none      &none      &none  &none
+&none         &none      &none      &none        &none       &none       &none     &none     &none      &none  &none  &none
+&none         &none      &kp PG_UP  &kp PG_DN    &kp HOME    &kp END     &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT  &none  &none
+&none         &none      &none      &none        &kp INS     &none       &none     &none     &none      &none  &none  &none
                                      &kp LALT    &trans      &trans      &trans    &trans    &kp LGUI
             >;
         };
 
         raise_layer {
             bindings = <
-&none  &kp EXCL     &kp AT     &kp HASH    &kp DLLR    &kp PRCNT    &kp ASTERISK     &kp AMPS         &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS  &kp CARET  &none
-&none  &kp LGUI     &kp PG_UP  &kp PG_DN   &kp HOME    &kp END      &kp KP_MINUS     &kp UNDERSCORE   &kp LBKT               &kp RBKT               &kp BSLH  &none
-&none     &none     &none      &none       &kp INS     &none        &kp KP_PLUS      &kp EQUAL        &kp LBRC               &kp RBRC               &kp PIPE  &none
-                               &kp LALT    &trans      &trans       &trans           &kp RET          &kp LGUI
+&none  &kp EXCL     &kp AT   &kp HASH  &kp DLLR  &kp PRCNT    &kp ASTERISK        &kp AMPS  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp CARET  &none
+&none  &kp LGUI  &kp PG_UP  &kp PG_DN  &kp HOME    &kp END    &kp KP_MINUS  &kp UNDERSCORE              &kp LBKT               &kp RBKT   &kp BSLH  &none
+&none     &none      &none      &none   &kp INS      &none     &kp KP_PLUS       &kp EQUAL              &kp LBRC               &kp RBRC   &kp PIPE  &none
+                               &kp LALT    &trans      &trans       &trans        &kp RET              &kp LGUI
             >;
         };
 
         numbers {
             bindings = <
-&none    &none         &none     &none        &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9    &kp KP_DIVIDE  &none
-&none    &kp LEFT_GUI  &none     &none        &none    &none    &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6    &kp COLON      &none
-&none    &kp LSHIFT    &none     &none        &none    &none    &kp KP_PLUS   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3    &kp COMMA      &none
-                                 &kp LALT  &kp LS(TAB)  &kp TAB    &kp NUMBER_0     &kp SPACE    &kp PERIOD
+&none         &none  &none     &none        &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
+&none  &kp LEFT_GUI  &none     &none   &caps_word    &none    &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON  &none
+&none    &kp LSHIFT  &none     &none        &none    &none     &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA  &none
+                            &kp LALT  &kp LS(TAB)  &kp TAB    &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
 
