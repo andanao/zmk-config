@@ -64,6 +64,11 @@
             bindings = <&kp DEL>;
             key-positions = <19 21>;
         };
+
+	ret {
+            bindings = <&kp RET>;
+            key-positions = <30 40>;
+	}
     };
 
     keymap {
