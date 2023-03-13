@@ -40,12 +40,12 @@
             key-positions = <39 34>;
         };
 
-	ret {
+	ret_r {
             bindings = <&kp RET>;
             key-positions = <RH1 RB0>;
 	};
 
-	ret {
+	ret_l {
             bindings = <&kp RET>;
             key-positions = <LH1 LB0>;
 	};
