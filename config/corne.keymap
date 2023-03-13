@@ -92,7 +92,7 @@
         };
 
         numbers {
-          xg  bindings = <
+            bindings = <
 &none         &none  &none     &none        &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
 &none  &kp LEFT_GUI  &none     &none        &none    &none    &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON  &none
 &none    &kp LSHIFT  &none     &none        &none    &none     &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA  &none
