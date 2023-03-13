@@ -62,7 +62,7 @@
             bindings = <
 &none         &none         &none      &none        &none       &none       &none     &none     &none      &none      &none      &none
 &none         &kp LEFT_GUI  &kp PG_UP  &kp PG_DN    &kp HOME    &kp END     &kp LEFT  &kp DOWN  &kp UP     &kp RIGHT  &kp SQT    &none
-&none         &none         &none      &none        &kp INS     &none       &none     &none     &none      &none      &none      &none
+&none         &none         &none      &none        &kp INS     &none       &none     &none     &none      &none      &kp GRAVE  &none
                                        &kp LALT     &trans      &trans      &trans    &trans    &kp LGUI
             >;
         };
