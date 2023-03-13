@@ -40,21 +40,6 @@
             key-positions = <39 34>;
         };
 
-        backspace {
-            bindings = <&kp BACKSPACE>;
-            key-positions = <19 20>;
-        };
-
-        c_backspace {
-            bindings = <&kp LC(BACKSPACE)>;
-            key-positions = <20 21>;
-        };
-
-        delete {
-            bindings = <&kp DEL>;
-            key-positions = <19 21>;
-        };
-
 	ret {
             bindings = <&kp RET>;
             key-positions = <RH1 RB0>;
