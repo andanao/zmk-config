@@ -44,6 +44,11 @@
             bindings = <&kp RET>;
             key-positions = <RH1 RB0>;
 	};
+
+	ret {
+            bindings = <&kp RET>;
+            key-positions = <LH1 LB0>;
+	};
     };
 
     keymap {
