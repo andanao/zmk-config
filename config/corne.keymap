@@ -56,7 +56,7 @@
 	};
 
 	c_backspace {
-            bindings = <&kp RET>;
+	    bindings = <&kp RC(BACKSPACE)>;
             key-positions = <RM2 RM3>;
 	};
 
