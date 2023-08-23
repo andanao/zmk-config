@@ -42,7 +42,7 @@
 
 	ret_r {
             bindings = <&kp RET>;
-            key-positions = <RH1 RB0>;
+            key-positions = <RH2 RB1>;
 	};
 
 	ret_l {
@@ -65,6 +65,15 @@
             key-positions = <RM1 RM3>;
 	};
 
+	underscore {
+	  bindings = <&kp UNDERSCORE>;
+            key-positions = <RB1 RB2>;
+	};
+
+	minus {
+	  bindings = <&kp KP_MINUS>;
+            key-positions = <RM0 RM1>;
+	};
 
     };
 
