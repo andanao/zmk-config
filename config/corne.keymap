@@ -75,6 +75,27 @@
             key-positions = <RM0 RM1>;
 	};
 
+	c_z{
+	    bindings = <&kp RC(C)>;
+            key-positions = <LB4 LM4>;
+	};
+
+	c_x {
+	    bindings = <&kp RC(X)>;
+            key-positions = <LB3 LM3>;
+	};
+
+	c_c {
+	    bindings = <&kp RC(C)>;
+            key-positions = <LB2 LM2>;
+	};
+
+	c_v {
+	    bindings = <&kp RC(V)>;
+            key-positions = <LB1 LM1>;
+	};
+
+
     };
 
     keymap {
