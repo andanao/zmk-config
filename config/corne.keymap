@@ -42,7 +42,7 @@
 
 	ret_r {
             bindings = <&kp RET>;
-            key-positions = <RH2 RB1>;
+            key-positions = <RM4 RB4>;
 	};
 
 	ret_l {
