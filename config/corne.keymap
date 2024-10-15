@@ -17,27 +17,27 @@
 
         l_ctrl {
             bindings = <&kp LCTRL>;
-            key-positions = <4 16>;
+            key-positions = <LT1 LM1>;
         };
 
         r_ctrl {
             bindings = <&kp RCTRL>;
-            key-positions = <7 19>;
+            key-positions = <RT1 RM1>;
         };
 
         caps_word {
             bindings = <&caps_word>;
-            key-positions = <6 7 18 19>;
+            key-positions = <RT0 RT1 RM0 RM1>;
         };
 
         num_layer {
             bindings = <&mo 3>;
-            key-positions = <14 15>;
+            key-positions = <LM2 LM3>;
         };
 
         admin_layer {
             bindings = <&mo 4>;
-            key-positions = <39 34>;
+            key-positions = <RT0 RB4>;
         };
 
 	ret_r {
@@ -47,7 +47,7 @@
 
 	ret_l {
             bindings = <&kp RET>;
-            key-positions = <LH1 LB0>;
+            key-positions = <LB4 LM4>;
 	};
 
 	backspace {
@@ -73,11 +73,6 @@
 	minus {
 	  bindings = <&kp KP_MINUS>;
             key-positions = <RM0 RM1>;
-	};
-
-	c_z{
-	    bindings = <&kp RC(C)>;
-            key-positions = <LB4 LM4>;
 	};
 
 	c_x {
