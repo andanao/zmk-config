@@ -37,7 +37,7 @@
 
         admin_layer {
             bindings = <&mo 4>;
-            key-positions = <RT0 RB4>;
+            key-positions = <RH0 RB4>;
         };
 
 	ret_r {
@@ -77,6 +77,11 @@
 
 	minus {
 	  bindings = <&kp KP_MINUS>;
+            key-positions = <RM0 RM1>;
+	};
+
+	minus {
+	  bindings = <&kp KP_PLUS>;
             key-positions = <RM0 RM1>;
 	};
 
