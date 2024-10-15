@@ -135,19 +135,19 @@
 
         numbers {
             bindings = <
-&none         &none  &none     &none        &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
+&none   &none     &bootloader  &sys_rese    &none    &none    &kp ASTERISK  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_DIVIDE  &none
 &none  &kp LEFT_GUI  &none     &none        &none    &none    &kp KP_MINUS  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6      &kp COLON  &none
-&none    &kp LSHIFT  &none     &none        &none    &none     &kp KP_PLUS  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA  &none
+&none    &kp LSHIFT  &none     &none        &none    &none    &kp KP_PLUS   &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3      &kp COMMA  &none
                             &kp LALT  &kp LS(TAB)  &kp TAB    &kp NUMBER_0     &kp SPACE    &kp PERIOD
             >;
         };
 
         admin {
             bindings = <
-&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &bootloader        &none         &none       &none  &bt BT_CLR  &none
-&none         &none         &none         &none         &none         &none    &kp C_PREV  &kp C_VOLUME_DOWN  &kp C_VOL_UP  &kp C_NEXT       &none  &none
-&none         &none         &none         &none         &none         &none         &none              &none         &none       &none       &none  &none
-                                          &none         &none         &none         &none   &kp C_PLAY_PAUSE         &none
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4         &none              &none              &none         &none         &bt BT_CLR  &none
+&none  &none         &none         &none         &none         &none                &kp C_PREV         &kp C_VOLUME_DOWN  &kp C_VOL_UP  &kp C_NEXT    &none       &none
+&none  &none         &none         &none         &none         &none                &none              &none              &none         &none         &none       &none
+                                   &none         &none         &none                &none              &kp C_PLAY_PAUSE   &none
             >;
         };
     };
