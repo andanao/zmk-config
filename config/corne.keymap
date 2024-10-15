@@ -82,7 +82,7 @@
 
 	plus {
 	  bindings = <&kp KP_PLUS>;
-            key-positions = <RM0 RM1>;
+            key-positions = <RB0 RB1>;
 	};
 
 	c_x {
