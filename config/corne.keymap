@@ -80,7 +80,7 @@
             key-positions = <RM0 RM1>;
 	};
 
-	minus {
+	plus {
 	  bindings = <&kp KP_PLUS>;
             key-positions = <RM0 RM1>;
 	};
