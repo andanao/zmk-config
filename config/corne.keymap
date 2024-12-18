@@ -66,23 +66,28 @@
 	};
 
 	underscore {
-	  bindings = <&kp UNDERSCORE>;
-            key-positions = <RB1 RB2>;
+	    bindings = <&kp UNDERSCORE>;
+	    key-positions = <RB1 RB2>;
 	};
 
 	equal {
-	  bindings = <&kp EQUAL>;
+	    bindings = <&kp EQUAL>;
             key-positions = <RM1 RB1>;
 	};
 
 	minus {
-	  bindings = <&kp KP_MINUS>;
-            key-positions = <RM0 RM1>;
+	    bindings = <&kp KP_MINUS>;
+	    key-positions = <RM0 RM1>;
 	};
 
 	plus {
-	  bindings = <&kp KP_PLUS>;
-            key-positions = <RB0 RB1>;
+	    bindings = <&kp KP_PLUS>;
+	    key-positions = <RB0 RB1>;
+	};
+
+	asterisk {
+	    bindings = <&kp ASTERISK>;
+	    key-positions = <RT0 RT1>;
 	};
 
 	c_x {
@@ -99,7 +104,6 @@
 	    bindings = <&kp RC(V)>;
             key-positions = <LB1 LM1>;
 	};
-
 
     };
 
@@ -126,7 +130,7 @@
 
         raise_layer {
             bindings = <
-&none     &kp EXCL   &kp AT     &kp HASH   &kp DLLR    &kp PRCNT    &kp ASTERISK   &kp AMPS         &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS  &kp CARET  &none
+&none     &kp EXCL   &kp AT     &kp HASH   &kp DLLR    &kp PRCNT    &none          &kp AMPS         &kp LEFT_PARENTHESIS   &kp RIGHT_PARENTHESIS  &kp CARET  &none
 &none     &kp LGUI   &kp PG_UP  &kp PG_DN  &kp HOME    &kp END      &none          &none            &kp LBKT               &kp RBKT               &kp BSLH  &none
 &none     &none      &none      &none      &kp INS     &none        &none          &none            &kp LBRC               &kp RBRC               &kp PIPE  &none
                                 &kp LALT   &trans      &trans       &trans         &trans           &kp LGUI
