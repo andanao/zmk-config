@@ -1,11 +1,53 @@
+# This file specifies the build dependencies for GitHub Action workflows and
+# for local build environments. The workspace has four toplevel directories
+# containing the user config, modules, zephyr and ZMK.
+#
+# ZMK-Workspace
+# ├── config
+# ├── modules
+# ├── zephyr
+# └── zmk
+#
+# To create a local build environment, clone this repository and then run
+# `just init` from its toplevel directory (see docs/build-env.md).
+---
 manifest:
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
+    - name: urob
+      url-base: https://github.com/urob
+
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: 641514a97db345f499dd50b0360e594270f008fe # main (2026-08-31)
       import: app/west.yml
+
+    # ZMK modules
+    # zmk-helpers supersedes the old zmk-nodefree-config submodule. It provides
+    # the ZMK_LAYER / ZMK_COMBO / ZMK_HOLD_TAP macros and the standardized
+    # key-position labels (LT0-LT4, LM*, LB*, LH*, mirrored as R*).
+    - name: zmk-helpers
+      remote: urob
+      path: modules/zmk/helpers
+      revision: 95edb8f15ef1d1bd8332810555f8cf5837fbdd27 # main (2026-08-31)
+
+    # Avoid downloading GBs of unused Zephyr modules. Remove this section to
+    # restore the default (needed for less common hardware).
+    - name: zephyr
+      remote: zmkfirmware
+      revision: 10ba6d0cb38bc3d258775d27982f707599320085 # v4.1.0+zmk-fixes (2026-08-18)
+      clone-depth: 1
+      import:
+        name-allowlist:
+          - cmsis
+          - hal_nordic
+          - hal_rpi_pico
+          - hal_stm32 # imported independently by ZMK
+          - lvgl # imported independently by ZMK
+          - mbedtls
+          - tinycrypt
+
   self:
     path: config
