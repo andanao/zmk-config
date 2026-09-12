@@ -1,19 +1,26 @@
-# This file generates the GitHub Actions matrix
-# For simple board + shield combinations, add them
-# to the top level board and shield arrays, for more
-# control, add individual board + shield combinations to
-# the `include` property, e.g:
+# Build targets. Parsed both by the GitHub Actions matrix and by `just build`.
 #
-# board: [ "nice_nano_v2" ]
-# shield: [ "corne_left", "corne_right" ]
-# include:
-#   - board: bdn9_rev2
-#   - board: nice_nano_v2
-#     shield: reviung41
-#
+# All Corne variants share config/corne.keymap (ZMK resolves the keymap by
+# shield-name prefix). `artifact-name` is what keeps the resulting .uf2 files
+# apart, since only the shield list differs between the 6-column boards and
+# the 5-column nice!view board.
 ---
 include:
-    - board: nice_nano@2.0.0//zmk
-      shield: corne_left nice_view_adapter nice_view
-    - board: nice_nano@2.0.0//zmk
-      shield: corne_right nice_view_adapter nice_view
+  # 6-column Corne, no display (x2 — the two boards are identical)
+  - board: nice_nano@2.0.0//zmk
+    shield: corne_left
+    artifact-name: corne6_left
+  - board: nice_nano@2.0.0//zmk
+    shield: corne_right
+    artifact-name: corne6_right
+
+  # 5-column Corne with nice!view
+  - board: nice_nano@2.0.0//zmk
+    shield: corne_left nice_view_adapter nice_view
+    artifact-name: corne5_view_left
+  - board: nice_nano@2.0.0//zmk
+    shield: corne_right nice_view_adapter nice_view
+    artifact-name: corne5_view_right
+
+  # TODO: handwired 5-column Corne — needs a custom shield under
+  # config/boards/shields/. See AGENTS.md ("Adding the handwired board").
