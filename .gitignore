@@ -1,0 +1,19 @@
+# West workspace (populated by `just init`)
+.west
+modules
+zephyr
+zmk
+
+# Build artifacts
+.build
+firmware
+
+# Nix / direnv
+.direnv
+
+# Python venv (only used by the non-nix build environment)
+.venv
+
+# Intermediate keymap-drawer output (the .svg files are committed)
+draw/*.yaml
+!draw/config.yaml
