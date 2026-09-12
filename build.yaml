@@ -22,5 +22,10 @@ include:
     shield: corne_right nice_view_adapter nice_view
     artifact-name: corne5_view_right
 
-  # TODO: handwired 5-column Corne — needs a custom shield under
-  # config/boards/shields/. See AGENTS.md ("Adding the handwired board").
+  # Handwired 5-column Corne (custom shield, config/boards/shields/)
+  - board: nice_nano@2.0.0//zmk
+    shield: handwired_corne_left
+    artifact-name: handwired_left
+  - board: nice_nano@2.0.0//zmk
+    shield: handwired_corne_right
+    artifact-name: handwired_right

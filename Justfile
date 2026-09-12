@@ -96,6 +96,7 @@ draw expr="all": _check_yq_version
     # https://github.com/caksoylar/keymap-drawer/blob/main/PHYSICAL_LAYOUTS.md
     keyboards=(
         "corne|-z corne"
+        "handwired_corne|-z corne -l foostan_corne_5col_layout"
     )
 
     matched=0

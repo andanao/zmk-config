@@ -1,0 +1,20 @@
+#include "handwired_corne.dtsi"
+
+// Pin comments give the raw nRF port.pin as measured, next to the pro micro
+// number ZMK addresses it by, so the wiring can be checked either way.
+&kscan0 {
+    row-gpios                                                    // top -> bottom
+        = <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>    // P1.11  Q W E R T
+        , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>    // P0.10  A S D F G
+        , <&pro_micro 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>    // P0.09  Z X C V B
+        , <&pro_micro 18 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>    // P1.15  thumbs
+        ;
+
+    col-gpios                                  // left -> right
+        = <&pro_micro 15 GPIO_ACTIVE_HIGH>     // P1.13  Q A Z
+        , <&pro_micro  6 GPIO_ACTIVE_HIGH>     // P1.00  W S X
+        , <&pro_micro  7 GPIO_ACTIVE_HIGH>     // P0.11  E D C  + thumb l2
+        , <&pro_micro  8 GPIO_ACTIVE_HIGH>     // P1.04  R F V  + thumb l1
+        , <&pro_micro  9 GPIO_ACTIVE_HIGH>     // P1.06  T G B  + thumb l0
+        ;
+};

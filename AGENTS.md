@@ -45,9 +45,25 @@ ZMK resolves the keymap by shield-name prefix (see `zmk/app/boards/post_boards_s
 against the default 42-key `foostan_corne_6col_layout`. On the 5-column boards the outer-column
 switches physically don't exist, so those bindings are simply never triggered.
 
-The same cmake logic applies **every** matching `<shield>.conf`, not just the first — which is why
-`config/nice_view.conf` can override the keyboard name for the nice!view board only, on top of the
-shared `config/corne.conf`.
+The handwired board is the exception: it has its own shield, and therefore its own
+`config/handwired_corne.keymap`, with no collision. Its name deliberately does *not* start with
+`corne_` — shield-name prefixes are matched by stripping `_`-separated suffixes, so a shield called
+`corne_hw_left` would also match `config/corne.conf` and inherit the wrong keyboard name.
+
+## How the .conf files layer
+
+ZMK applies **every** matching `<shield>.conf`, not just the first, and then the `<board>.conf`,
+in that order — later files win. So:
+
+| File                       | Applies to                        | Holds                          |
+| -------------------------- | --------------------------------- | ------------------------------ |
+| `config/nice_nano.conf`    | everything (all boards are nice!nano) | sleep, BT power            |
+| `config/corne.conf`        | all three Corne PCBs              | `adrian_corne_6` name          |
+| `config/nice_view.conf`    | nice!view builds only             | overrides name to `Corne View` |
+
+The handwired board takes its name from its shield's `Kconfig.defconfig` instead, since nothing
+overrides it. Keep `nice_nano.conf` to genuinely universal settings — being merged last, it would
+silently beat any per-shield override.
 
 ## Where to change what
 
@@ -57,30 +73,36 @@ shared `config/corne.conf`.
 | Combos                            | `config/combos.dtsi` (position diagram at top) |
 | Outer columns on 6-column boards  | `config/corne.keymap` (`OUTER_T/M/B`)       |
 | Per-board physical mapping        | `config/<board>.keymap`                     |
-| Shared Corne settings (BT, sleep) | `config/corne.conf`                         |
-| nice!view-only settings           | `config/nice_view.conf`                     |
+| Handwired matrix / pins           | `config/boards/shields/handwired_corne/`    |
+| Settings for all keyboards        | `config/nice_nano.conf`                     |
+| Corne-only / nice!view-only       | `config/corne.conf`, `config/nice_view.conf`|
 | Build targets                     | `build.yaml`                                |
 | Keymap diagram styling / legends  | `draw/config.yaml`                          |
 | Which keyboards get drawn         | `Justfile` (`keyboards` array in `draw`)    |
 | ZMK / module versions             | `config/west.yml` (then `just sync`)        |
 
-## Adding the handwired board
+## Adding another board
 
-The handwired 5-column Corne needs a shield definition, because its matrix wiring doesn't match
-foostan's. Once the pin mapping is known:
+`config/boards/shields/handwired_corne/` is the worked example — a custom shield for hardware ZMK
+doesn't know about. The steps:
 
-1. Create `config/boards/shields/<name>/` with `Kconfig.shield`, `Kconfig.defconfig`,
-   `<name>.dtsi` (kscan matrix, physical layout, matrix transform) and
-   `<name>_left.overlay` / `<name>_right.overlay`. ZMK warns that `config/boards` is deprecated in
-   favour of a module; that's fine for a one-off shield, but a sibling module repo is the tidier
-   long-term home.
-2. Create `config/<name>.keymap` as a 36-key pass-through adapter:
-   `#define CONFIG_WIRELESS`, `#include <zmk-helpers/key-labels/36.h>`, `#include "base.keymap"`.
-   No `ZMK_BASE_LAYER` needed — the fallback covers it.
-3. Create `config/<name>.conf` if it needs anything beyond the defaults.
-4. Add two `build.yaml` entries (`<name>_left` / `<name>_right`) with `artifact-name`s.
-5. Add `"<name>|-d config/boards/shields/<name>/<name>.dtsi"` to the `keyboards` array in the
+1. Create `config/boards/shields/<name>/` with `Kconfig.shield`, `Kconfig.defconfig`, `<name>.dtsi`
+   (kscan matrix + matrix transform + chosen physical layout) and
+   `<name>_left.overlay` / `<name>_right.overlay` carrying the per-half GPIOs. Pick a name that
+   isn't a suffix-extension of an existing one, per the `.conf` layering above. ZMK warns that
+   `config/boards` is deprecated in favour of a module; fine for a one-off, but a module is the
+   tidier long-term home.
+2. Reuse a stock physical layout if one fits rather than hand-writing `key_physical_attrs`.
+   `<layouts/foostan/corne/5column.dtsi>` is exactly 3x5+3 per half and its key order matches
+   zmk-helpers' `36.h`, which is why the handwired board needs no adapter at all.
+3. Create `config/<name>.keymap`: `#define CONFIG_WIRELESS`, the matching key-labels header, then
+   `#include "base.keymap"`. A 36-key board needs no `ZMK_BASE_LAYER` — the fallback covers it.
+4. Add `build.yaml` entries with `artifact-name`s, and an entry in the `keyboards` array of the
    `draw` recipe so it gets its own diagram.
+5. Check the generated `.build/<target>/zephyr/zephyr.dts`: the `kscan` GPIOs, the transform's
+   `columns`/`rows`/`col-offset`, and that the base layer has the expected number of bindings.
+   That catches everything except whether the matrix matches the physical wiring, which only
+   flashing can tell you.
 
 ## Migrating to home-row mods
 

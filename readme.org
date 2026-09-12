@@ -16,10 +16,14 @@ Per-layer breakdown: [[file:draw/corne.svg]]
 |---------------------------------+----------------------------------------|
 | 6-column Corne, no display (x2) | =corne6_left= / =corne6_right=         |
 | 5-column Corne with nice!view   | =corne5_view_left= / =corne5_view_right= |
-| handwired 5-column Corne        | not yet wired up                       |
+| handwired 5-column Corne        | =handwired_left= / =handwired_right=   |
 
-The three PCBs share one keymap. On the 5-column boards the outer-column switches simply don't
-exist, so those bindings are never triggered.
+The three Corne PCBs share one keymap. On the 5-column board the outer-column switches simply
+don't exist, so those bindings are never triggered. The handwired board has its own shield
+(=config/boards/shields/handwired_corne/=) and is a true 36-key board, so it uses the shared
+=base.keymap= directly with no adapter.
+
+[[file:draw/handwired_corne-overview.svg]]
 
 ** Building
 

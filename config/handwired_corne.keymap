@@ -1,0 +1,12 @@
+/*
+ * Handwired 5-column Corne.
+ *
+ * Exactly 36 keys, so base.keymap's pass-through ZMK_BASE_LAYER fallback
+ * applies and no per-board adapter is needed -- unlike corne.keymap, which has
+ * to pad the 36-key blocks out to the Corne's 42-key grid.
+ */
+
+#define CONFIG_WIRELESS
+
+#include <zmk-helpers/key-labels/36.h>
+#include "base.keymap"

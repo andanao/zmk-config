@@ -99,8 +99,8 @@ current targets need it.)
 | ------------------------------- | ----------------------------------------------- |
 | 6-column Corne, no display (x2) | `corne6_left.uf2` / `corne6_right.uf2`          |
 | 5-column Corne with nice!view   | `corne5_view_left.uf2` / `corne5_view_right.uf2`|
-| handwired 5-column Corne        | not yet — see AGENTS.md                         |
+| handwired 5-column Corne        | `handwired_left.uf2` / `handwired_right.uf2`    |
 
 The 6-column and nice!view builds share the same keymap; they differ only in the display support
-compiled in, and the Bluetooth name (`adrian_corne_6` vs `Corne View`) so they can be told apart
-when pairing.
+compiled in, and the Bluetooth name so they can be told apart when pairing: `adrian_corne_6`,
+`Corne View` and `adrian_corne_hw` respectively.
