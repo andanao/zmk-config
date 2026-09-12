@@ -1,0 +1,44 @@
+/*                KEY POSITIONS
+
+  ╭─────────────────────╮ ╭─────────────────────╮
+  │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
+  │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
+  │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
+  ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
+          ╰─────────────╯ ╰─────────────╯
+
+  Column 0 is the *inner* column (index finger), 4 the outer (pinky). These
+  labels come from the per-board key-labels header included by the board's
+  entry keymap, so the combos below work unchanged on any board. */
+
+// The 3-argument form of ZMK_COMBO emits no `layers` property, which means
+// "active on every layer" — matching how these combos behaved before the
+// zmk-helpers migration.
+
+/* Modifiers */
+ZMK_COMBO(l_ctrl,      &kp LCTRL,          LT1 LM1)         // R + F
+ZMK_COMBO(r_ctrl,      &kp RCTRL,          RT1 RM1)         // U + J
+ZMK_COMBO(caps_word,   &caps_word,         RT0 RT1 RM0 RM1) // Y + U + H + J
+
+/* Layer access */
+ZMK_COMBO(num_layer,   &mo NUM,            LM2 LM3)         // D + S
+ZMK_COMBO(admin_layer, &mo ADMIN,          RH0 RB4)         // inner thumb + /
+
+/* Whitespace & deletion */
+ZMK_COMBO(ret_l,       &kp RET,            LB4 LM4)         // Z + A
+ZMK_COMBO(ret_r,       &kp RET,            RM4 RB4)         // ; + /
+ZMK_COMBO(backspace,   &kp BSPC,           RM1 RM2)         // J + K
+ZMK_COMBO(c_backspace, &kp RC(BSPC),       RM2 RM3)         // K + L
+ZMK_COMBO(del,         &kp DEL,            RM1 RM3)         // J + L
+
+/* Symbols */
+ZMK_COMBO(asterisk,    &kp ASTERISK,       RT0 RT1)         // Y + U
+ZMK_COMBO(minus,       &kp KP_MINUS,       RM0 RM1)         // H + J
+ZMK_COMBO(plus,        &kp KP_PLUS,        RB0 RB1)         // N + M
+ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
+ZMK_COMBO(underscore,  &kp UNDERSCORE,     RB1 RB2)         // M + ,
+
+/* Clipboard */
+ZMK_COMBO(c_x,         &kp RC(X),          LB3 LM3)         // X + S
+ZMK_COMBO(c_c,         &kp RC(C),          LB2 LM2)         // C + D
+ZMK_COMBO(c_v,         &kp RC(V),          LB1 LM1)         // V + F

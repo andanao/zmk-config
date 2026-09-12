@@ -1,0 +1,112 @@
+/*
+ * Shared keymap for all boards in this repository.
+ *
+ * Every layer is defined exactly once, for 36 keys (3x5+3), using the
+ * standardized key labels from zmk-helpers. Each board has a small entry
+ * keymap (e.g. corne.keymap) that maps these eight 36-key blocks onto its
+ * physical grid and then includes this file. See AGENTS.md.
+ */
+
+// ZMK's built-in default combo timeout, set explicitly so the migration off
+// zmk-nodefree-config did not silently change combo timing (zmk-helpers would
+// otherwise default it to 30ms). Must precede helper.h, which only defines it
+// if unset.
+#define COMBO_TERM 50
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <zmk-helpers/helper.h> // Requires the zmk-helpers module.
+
+#ifdef CONFIG_WIRELESS
+  #include <dt-bindings/zmk/bt.h>
+  #define _BT_SEL_KEYS_                                                        \
+      &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4
+  #define BT_CLEAR &bt BT_CLR
+#else
+  #define _BT_SEL_KEYS_ &none &none &none &none &none
+  #define BT_CLEAR &none
+#endif
+
+/* Layers */
+
+#define DEF   0
+#define LOWER 1
+#define RAISE 2
+#define NUM   3
+#define ADMIN 4
+
+#define XXX &none
+#define ___ &trans
+
+/* Combos */
+
+#include "combos.dtsi"
+
+/* Keymap */
+
+// Boards with exactly 36 keys need no adapter; anything else defines its own
+// ZMK_BASE_LAYER before including this file.
+#ifndef ZMK_BASE_LAYER
+  #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                 \
+      ZMK_LAYER(name, LT RT LM RM LB RB LH RH)
+#endif
+
+ZMK_BASE_LAYER(Base,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp Q         &kp W         &kp E         &kp R         &kp T       ,   &kp Y         &kp U         &kp I         &kp O         &kp P       ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp A         &kp S         &kp D         &kp F         &kp G       ,   &kp H         &kp J         &kp K         &kp L         &kp SEMI    ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp Z         &kp X         &kp C         &kp V         &kp B       ,   &kp N         &kp M         &kp COMMA     &kp DOT       &kp FSLH    ,
+//╰─────────────┴─────────────┴──╮────────────┼─────────────┼───────────┤ ├─────────────┼─────────────┼──╭───────────┴─────────────┴─────────────╯
+                              &mt LALT ESC  &kp LSHFT     &lt RAISE TAB ,   &mo LOWER     &kp SPACE     &kp LGUI
+//                              ╰─────────────┴─────────────┴───────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Lower,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    XXX           XXX           XXX           XXX           XXX         ,   XXX           XXX           XXX           XXX           XXX         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp LGUI      &kp PG_UP     &kp PG_DN     &kp HOME      &kp END     ,   &kp LEFT      &kp DOWN      &kp UP        &kp RIGHT     &kp SQT     ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    XXX           XXX           XXX           &kp INS       XXX         ,   XXX           XXX           XXX           XXX           &kp GRAVE   ,
+//╰─────────────┴─────────────┴──╮────────────┼─────────────┼───────────┤ ├─────────────┼─────────────┼──╭───────────┴─────────────┴─────────────╯
+                              &kp LALT      ___           ___           ,   ___           ___           &kp LGUI
+//                              ╰─────────────┴─────────────┴───────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Raise,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    &kp EXCL      &kp AT        &kp HASH      &kp DLLR      &kp PRCNT   ,   XXX           &kp AMPS      &kp LPAR      &kp RPAR      &kp CARET   ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp LGUI      &kp PG_UP     &kp PG_DN     &kp HOME      &kp END     ,   XXX           XXX           &kp LBKT      &kp RBKT      &kp BSLH    ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    XXX           XXX           XXX           &kp INS       XXX         ,   XXX           XXX           &kp LBRC      &kp RBRC      &kp PIPE    ,
+//╰─────────────┴─────────────┴──╮────────────┼─────────────┼───────────┤ ├─────────────┼─────────────┼──╭───────────┴─────────────┴─────────────╯
+                              &kp LALT      ___           ___           ,   ___           ___           &kp LGUI
+//                              ╰─────────────┴─────────────┴───────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Num,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+    XXX           &bootloader   &sys_reset    XXX           XXX         ,   &kp ASTERISK  &kp N7        &kp N8        &kp N9        &kp KP_DIVIDE ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp LGUI      XXX           XXX           XXX           XXX         ,   &kp KP_MINUS  &kp N4        &kp N5        &kp N6        &kp COLON   ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp LSHFT     XXX           XXX           XXX           XXX         ,   &kp KP_PLUS   &kp N1        &kp N2        &kp N3        &kp COMMA   ,
+//╰─────────────┴─────────────┴──╮────────────┼─────────────┼───────────┤ ├─────────────┼─────────────┼──╭───────────┴─────────────┴─────────────╯
+                              &kp LALT      &kp LS(TAB)   &kp TAB       ,   &kp N0        &kp SPACE     &kp DOT
+//                              ╰─────────────┴─────────────┴───────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
+
+ZMK_BASE_LAYER(Admin,
+//╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮ ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮
+                               _BT_SEL_KEYS_                            ,   &bootloader   &sys_reset    XXX           XXX           BT_CLEAR    ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp F1        &kp F2        &kp F3        &kp F4        &kp F5      ,   &kp C_PREV    &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT    XXX         ,
+//├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤
+    &kp F6        &kp F7        &kp F8        &kp F9        &kp F10     ,   &kp F11       &kp F12       XXX           XXX           XXX         ,
+//╰─────────────┴─────────────┴──╮────────────┼─────────────┼───────────┤ ├─────────────┼─────────────┼──╭───────────┴─────────────┴─────────────╯
+                              XXX           XXX           XXX           ,   XXX           &kp C_PP      XXX
+//                              ╰─────────────┴─────────────┴───────────╯ ╰─────────────┴─────────────┴─────────────╯
+)
