@@ -1,0 +1,62 @@
+name: Draw keymaps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - config/*.keymap
+      - config/*.dtsi
+      - draw/config.yaml
+      - .github/workflows/draw.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: draw-${{ github.ref }}
+  cancel-in-progress: true
+
+# This only commits draw/*.svg, and none of the trigger paths above match that,
+# so it cannot retrigger itself.
+jobs:
+  draw:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - uses: astral-sh/setup-uv@v10
+
+      - name: Install tools
+        run: |
+          uv tool install keymap-drawer
+          uv tool install yq
+          uv tool install rust-just
+          uv tool update-shell
+          echo "$HOME/.local/bin" >>"$GITHUB_PATH"
+
+      # keymap-drawer resolves `#include <zmk-helpers/...>` against the west
+      # workspace, so the helpers module has to be on disk. Cloning it directly
+      # is far cheaper here than a full `west update`; the revision is read from
+      # config/west.yml so the two can't drift.
+      - name: Fetch zmk-helpers
+        run: |
+          rev=$(yq -r '.manifest.projects[] | select(.name == "zmk-helpers") | .revision' config/west.yml)
+          git clone --filter=blob:none https://github.com/urob/zmk-helpers modules/zmk/helpers
+          git -C modules/zmk/helpers checkout "$rev"
+
+      - name: Draw keymaps
+        run: just draw
+
+      - name: Commit updated diagrams
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- draw; then
+            echo "Diagrams already up to date."
+            exit 0
+          fi
+          git add draw
+          git commit -m "chore(draw): regenerate keymap diagrams"
+          git push

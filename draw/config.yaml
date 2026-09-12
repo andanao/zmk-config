@@ -1,0 +1,227 @@
+parse_config:
+  zmk_additional_includes:
+    - "modules/zmk/helpers/include"
+
+  zmk_preamble: |
+    #define CONFIG_WIRELESS
+
+  raw_binding_map:
+    "&sys_reset": Reset
+    "&bootloader": Boot
+    "&caps_word": Caps Word
+
+    "&bt BT_SEL 0": BT 1
+    "&bt BT_SEL 1": BT 2
+    "&bt BT_SEL 2": BT 3
+    "&bt BT_SEL 3": BT 4
+    "&bt BT_SEL 4": BT 5
+    "&bt BT_CLR": BT Clr
+
+    "&kp RC(C)": Copy
+    "&kp RC(X)": Cut
+    "&kp RC(V)": Paste
+    "&kp RC(BSPC)": Del Word
+    "&kp LS(TAB)": Shift Tab
+
+  trans_legend: { "t": "", "type": "trans" }
+
+  zmk_combos:
+    # Nudge combos that would otherwise collide with a neighbour sharing a key.
+    combo_del: { o: 0.4 }
+    combo_equal: { o: 0.3 }
+    combo_caps_word: { align: top, o: 0.5 }
+
+  zmk_keycode_map:
+    # custom mappings
+    LALT: Alt
+    RALT: Alt
+    LCTRL: Ctrl
+    RCTRL: Ctrl
+    LGUI: Gui
+    RGUI: Gui
+    LSHFT: Shift
+    RSHFT: Shift
+
+    BSPC: Bspc
+    DEL: Del
+    ESC: Esc
+    RET: Enter
+    SPACE: Spc
+    TAB: Tab
+
+    PG_UP: PgUp
+    PG_DN: PgDn
+    INS: Ins
+    HOME: Home
+    END: End
+
+    UP: ↑
+    DOWN: ↓
+    LEFT: ←
+    RIGHT: →
+
+    KP_PLUS: +
+    KP_MINUS: "-"
+    KP_DIVIDE: /
+    KP_MULTIPLY: "*"
+
+    C_MUTE: $$mdi:volume-off$$
+    C_PP: $$mdi:play-pause$$
+    C_VOL_UP: $$mdi:volume-high$$
+    C_VOL_DN: $$mdi:volume-medium$$
+    C_NEXT: $$mdi:skip-forward$$
+    C_PREV: $$mdi:skip-backward$$
+
+    # defaults
+    AMPERSAND: "&"
+    AMPS: "&"
+    APOS: "'"
+    APOSTROPHE: "'"
+    ASTERISK: "*"
+    ASTRK: "*"
+    AT: "@"
+    AT_SIGN: "@"
+    BACKSLASH: \
+    BSLH: \
+    CARET: ^
+    COLON: ":"
+    COMMA: ","
+    DLLR: $
+    DOLLAR: $
+    DOT: .
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
+    EQUAL: "="
+    EXCL: "!"
+    EXCLAMATION: "!"
+    FSLH: /
+    GRAVE: "`"
+    GREATER_THAN: ">"
+    GT: ">"
+    HASH: "#"
+    LBKT: "["
+    LBRC: "{"
+    LEFT_BRACE: "{"
+    LEFT_BRACKET: "["
+    LEFT_PARENTHESIS: (
+    LESS_THAN: <
+    LPAR: (
+    LT: <
+    MINUS: "-"
+    NON_US_BACKSLASH: \
+    NON_US_BSLH: "|"
+    NON_US_HASH: "#"
+    NUHS: "#"
+    PERCENT: "%"
+    PERIOD: .
+    PIPE: "|"
+    PIPE2: "|"
+    PLUS: +
+    POUND: "#"
+    PRCNT: "%"
+    QMARK: "?"
+    QUESTION: "?"
+    RBKT: "]"
+    RBRC: "}"
+    RIGHT_BRACE: "}"
+    RIGHT_BRACKET: "]"
+    RIGHT_PARENTHESIS: )
+    RPAR: )
+    SEMI: ;
+    SEMICOLON: ;
+    SINGLE_QUOTE: "'"
+    SLASH: /
+    SQT: "'"
+    STAR: "*"
+    TILDE: "~"
+    TILDE2: "~"
+    UNDER: _
+    UNDERSCORE: _
+
+draw_config:
+  append_colon_to_layer_header: false
+  dark_mode: false
+  footer_text: "andanao/zmk-config"
+  glyph_tap_size: 15
+  glyph_hold_size: 12
+  glyph_shifted_size: 10
+  legend_rel_y: 1
+  outer_pad_w: 10
+  outer_pad_h: 10
+  small_pad: 4
+
+  svg_style: |
+    /* Deliberately monochrome: black on white, with a white-on-black variant
+       for browsers in dark mode.
+
+       Colours are literal hex rather than CSS custom properties. librsvg --
+       what Emacs and most non-browser SVG viewers render with -- does not
+       implement var() and silently falls back to black, and it ignores @media,
+       so it gets the light variant below. */
+
+    svg path { fill: inherit; }
+
+    svg.keymap {
+        fill: #000;
+        background-color: #fff;
+        font-family: Calibri, system-ui, sans-serif;
+        font-size: 16px;
+        font-kerning: normal;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Keys need an outline here. The palettes keymap-drawer ships rely on the
+       key fill contrasting with a coloured page; white-on-white has none. */
+    rect.key, rect.combo, rect.combo-separate { fill: #fff; stroke: #000; stroke-width: 1; }
+    rect.held, rect.combo.held                { fill: #d0d0d0; }
+    .layer-Combos rect.key                    { fill: #f2f2f2; stroke: #b0b0b0; }
+    path.combo { stroke: #707070; stroke-width: 2; stroke-dasharray: 2, 3; opacity: 0.6; fill: none; }
+
+    text {
+        text-anchor: middle;
+        dominant-baseline: middle;
+        letter-spacing: 0.02em;
+    }
+
+    text.tap     { font-weight: 500; }
+    text.hold    { font-weight: 400; font-size: 13px; }
+    text.shifted { font-weight: 400; font-size: 11px; }
+    text.combo, text.left, text.right { font-size: 10px; }
+    /* 8px rather than the 10px of other secondary legends: the overview puts
+       two corner legends on the same key edge (e.g. Num's "Boot" beside
+       Admin's "BT 2"), which overlaps at anything larger. */
+    text.tl, text.tr, text.bl, text.br { font-size: 8px; }
+
+    text.hold, text.bl, text.br    { text-anchor: middle; dominant-baseline: auto; }
+    text.shifted, text.tl, text.tr { text-anchor: middle; dominant-baseline: hanging; }
+    text.left, text.tl, text.bl    { text-anchor: start; }
+    text.right, text.tr, text.br   { text-anchor: end; }
+
+    text.layer-activator { text-decoration: underline; }
+    text.combo.hold, text.combo.shifted, text.combo.left, text.combo.right { font-size: 8px; }
+
+    /* Without colour the overview's corner legends are told apart by position
+       alone: tl=Raise, tr=Lower, bl=Num, br=Admin. Grey keeps them from
+       competing with the base-layer legend in the middle of the key. */
+    text.tl, text.tr, text.bl, text.br,
+    use.tl, use.tr, use.bl, use.br { fill: #555; }
+
+    text.label, text.footer { fill: #000; stroke: #fff; stroke-width: 4; paint-order: stroke; }
+    text.label  { font-weight: bold; text-anchor: start; }
+    text.footer { text-anchor: end; dominant-baseline: auto; }
+
+    .icon-tabler > path                             { fill: inherit; stroke: inherit; stroke-width: 2; }
+    .icon-tabler > path[stroke="none"][fill="none"] { visibility: hidden; }
+
+    /* Browsers only; librsvg ignores @media and keeps the light variant.
+       Delete this block for light-only output. */
+    @media (prefers-color-scheme: dark) {
+        svg.keymap { fill: #fff; background-color: #000; }
+        rect.key, rect.combo, rect.combo-separate { fill: #000; stroke: #fff; }
+        rect.held, rect.combo.held                { fill: #444; }
+        .layer-Combos rect.key                    { fill: #1a1a1a; stroke: #666; }
+        path.combo { stroke: #909090; }
+        text.tl, text.tr, text.bl, text.br,
+        use.tl, use.tr, use.bl, use.br { fill: #aaa; }
+        text.label, text.footer { fill: #fff; stroke: #000; }
+    }
