@@ -26,15 +26,20 @@ jobs:
         with:
           ref: ${{ github.head_ref || github.ref_name }}
 
-      - uses: astral-sh/setup-uv@v10
+      # Pinned to an exact release: setup-uv stopped publishing floating major
+      # tags after v7, so `@v10` does not resolve even though v10.1.0 exists.
+      - uses: astral-sh/setup-uv@v10.1.0
 
+      # Versions are pinned because this workflow commits the regenerated SVGs:
+      # an unpinned keymap-drawer would rewrite every diagram the first time it
+      # released a rendering change. Keep in step with what `just draw` is run
+      # with locally (docs/build-env.md).
       - name: Install tools
         run: |
-          uv tool install keymap-drawer
-          uv tool install yq
-          uv tool install rust-just
-          uv tool update-shell
-          echo "$HOME/.local/bin" >>"$GITHUB_PATH"
+          uv tool install keymap-drawer==0.23.0
+          uv tool install yq==4.1.2
+          uv tool install rust-just==1.58.0
+          uv tool dir --bin >>"$GITHUB_PATH"
 
       # keymap-drawer resolves `#include <zmk-helpers/...>` against the west
       # workspace, so the helpers module has to be on disk. Cloning it directly
