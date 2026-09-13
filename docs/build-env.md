@@ -88,6 +88,7 @@ just build all -p # pristine rebuild (or `just clean`)
 just draw         # regenerate draw/*.svg from the keymaps
 just sync         # re-sync the workspace after editing config/west.yml
 
+just fmt          # re-align the key grids in the keymaps (--check to verify)
 just debug <t>    # build <t> with USB logging, to debug matrix wiring
 just settings-reset  # firmware that wipes stored BLE bonds
 ```

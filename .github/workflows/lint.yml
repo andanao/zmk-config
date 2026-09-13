@@ -1,0 +1,28 @@
+name: Lint
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - config/**
+      - scripts/**
+      - .github/workflows/lint.yml
+  pull_request:
+    paths:
+      - config/**
+      - scripts/**
+      - .github/workflows/lint.yml
+
+permissions:
+  contents: read
+
+jobs:
+  keymap-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # Fails if a ZMK_BASE_LAYER grid has drifted out of alignment. Run
+      # `just fmt` locally to fix. No third-party actions and no toolchain
+      # needed beyond the runner's python3.
+      - run: python3 scripts/fmt_keymap.py --check

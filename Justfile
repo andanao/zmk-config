@@ -160,6 +160,15 @@ draw expr="all": _check_yq_version
     [[ $matched -eq 0 ]] && echo "No matching keyboards found. Aborting..." >&2 && exit 1
     exit 0
 
+# re-align the ZMK_BASE_LAYER key grids in the keymaps (--check to only verify)
+#
+# Keeps the source laid out like the keyboard. dts-format won't do this: it
+# leaves C-preprocessor macro invocations alone, and a ZMK_BASE_LAYER call is
+# exactly that. Enforced by .github/workflows/lint.yml.
+[group('dev')]
+fmt *args:
+    python3 {{ justfile_directory() }}/scripts/fmt_keymap.py {{ args }}
+
 # build targets matching <expr> with USB logging, to debug matrix wiring
 #
 # Flash a half, plug it in over USB and attach a serial monitor

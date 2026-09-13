@@ -8,6 +8,9 @@ future me. For toolchain setup see [docs/build-env.md](docs/build-env.md).
 - **Verify keymap changes by building.** `just build all` builds every target in `build.yaml`;
   `just build <expr>` builds the ones matching a substring (`just list` shows the targets).
   Compiled firmware lands in `firmware/`.
+- **Keep the key grids aligned**: `just fmt` re-aligns the `ZMK_BASE_LAYER` blocks so the source
+  stays laid out like the keyboard. CI runs `just fmt --check`. It deliberately skips any row it
+  can't group confidently (the Admin layer's `_BT_SEL_KEYS_`), so hand-align those.
 - **Regenerate the diagrams after any layout change**: `just draw`. The SVGs under `draw/` are
   committed, and CI (`.github/workflows/draw.yml`) will regenerate them anyway — but committing
   them yourself keeps the history clean.
