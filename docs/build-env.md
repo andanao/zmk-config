@@ -21,7 +21,7 @@ uv tool install --python 3.12 yq   # python-yq, NOT the Go `yq` — see `just _c
 
 # A venv holding west + Zephyr's build-time Python dependencies
 uv venv .venv --python 3.12
-uv pip install --python .venv/bin/python -r zephyr/scripts/requirements-base.txt west patool
+uv pip install --python .venv/bin/python -r zephyr/scripts/requirements-base.txt west patool protobuf
 ```
 
 `west` lives in the venv, but you don't need to activate anything — the `Justfile` prepends
@@ -91,7 +91,34 @@ just sync         # re-sync the workspace after editing config/west.yml
 just fmt          # re-align the key grids in the keymaps (--check to verify)
 just debug <t>    # build <t> with USB logging, to debug matrix wiring
 just settings-reset  # firmware that wipes stored BLE bonds
+just studio <t>   # build <t> with ZMK Studio enabled (opt-in)
 ```
+
+## ZMK Studio
+
+Studio is realtime keymap editing with no reflash. It is **not** in the daily firmware — enable it
+per-build:
+
+```bash
+just studio corne6_left      # -> firmware/corne6_left-studio.uf2
+```
+
+Only the *central* half (the left one) needs it; the peripheral holds no keymap. The artifact is
+suffixed so it never overwrites the daily firmware.
+
+Two things to know before leaning on it:
+
+- **Studio writes to the device's settings, not this repo.** Nothing it changes appears in
+  `base.keymap` or the diagrams, and `just settings-reset` wipes it. Treat it as a scratchpad: try
+  a layout, then port what sticks back into `base.keymap`. Editing four keyboards independently in
+  Studio throws away the single-source-of-truth this repo is built around.
+- **Locking is disabled in this build.** The alternative is binding `&studio_unlock` to a key, but
+  keymaps cannot see Kconfig symbols, so that binding would also have to exist in the normal
+  firmware, where the behavior has a devicetree node but no driver behind it.
+
+Studio needs `nanopb` for its protobuf RPC. Zephyr ships nanopb in its `optional` group, which its
+own manifest disables, so `config/west.yml` pins it explicitly — and the build needs the `protobuf`
+Python package in the venv (included in the setup above).
 
 ## Debugging
 

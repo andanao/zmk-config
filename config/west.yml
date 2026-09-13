@@ -33,6 +33,16 @@ manifest:
       path: modules/zmk/helpers
       revision: 95edb8f15ef1d1bd8332810555f8cf5837fbdd27 # main (2026-08-31)
 
+    # Required by ZMK Studio's RPC (protobuf). Zephyr ships it in its
+    # "optional" group, which its own manifest disables via
+    # group-filter: [-optional], so the name-allowlist below cannot reach it --
+    # pinned explicitly instead. Revision matches zephyr/submanifests/optional.yaml
+    # for the Zephyr revision pinned below.
+    - name: nanopb
+      url: https://github.com/zephyrproject-rtos/nanopb
+      revision: 7307ce399b81ddcb3c3a5dc862c52d4754328d38
+      path: modules/lib/nanopb
+
     # Avoid downloading GBs of unused Zephyr modules. Remove this section to
     # restore the default (needed for less common hardware).
     - name: zephyr

@@ -180,6 +180,38 @@ fmt *args:
 [group('dev')]
 debug expr: (build expr "-S" "zmk-usb-logging" "-p")
 
+# build targets matching <expr> with ZMK Studio enabled
+#
+# Opt-in and written to <artifact>-studio.uf2 so it never overwrites the daily
+# firmware. Only the *central* half (the left one) needs this -- the peripheral
+# holds no keymap. Locking is disabled: the alternative is binding
+# `&studio_unlock` to a key, but the keymap cannot see Kconfig symbols, so that
+# binding would have to exist in the normal firmware too, where the behavior
+# has a devicetree node but no driver behind it.
+#
+# Studio edits the keymap in the device's own settings, NOT this repo. Treat it
+# as a scratchpad: try a layout, then port what sticks back into base.keymap.
+[group('dev')]
+studio expr:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
+
+    [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
+    echo "$targets" | while IFS=, read -r board shield snippet artifact cmake_args; do
+        artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
+        build_dir="{{ build }}/${artifact}-studio"
+
+        echo "Building Studio firmware for $artifact..."
+        west build -s zmk/app -d "$build_dir" -b "$board" -p -S studio-rpc-usb-uart -- \
+            -DZMK_CONFIG="{{ config }}" ${shield:+-DSHIELD="$shield"} $cmake_args \
+            -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n
+
+        mkdir -p "{{ out }}"
+        cp "$build_dir/zephyr/zmk.uf2" "{{ out }}/${artifact}-studio.uf2"
+        echo "Wrote {{ out }}/${artifact}-studio.uf2"
+    done
+
 # build ZMK's settings-reset firmware, which wipes stored BLE bonds
 #
 # For when split halves bond to the wrong partner, or a host pairing is stuck.
