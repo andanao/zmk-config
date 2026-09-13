@@ -160,6 +160,32 @@ draw expr="all": _check_yq_version
     [[ $matched -eq 0 ]] && echo "No matching keyboards found. Aborting..." >&2 && exit 1
     exit 0
 
+# build targets matching <expr> with USB logging, to debug matrix wiring
+#
+# Flash a half, plug it in over USB and attach a serial monitor
+# (`screen /dev/tty.usbmodem* 115200`); each key press logs its row, column and
+# resolved key position. Distinguishes a dead switch (nothing logged) from a
+# wire on the wrong line (logs an unexpected row/col) from a bad transform
+# (logs the right row/col but the wrong position). Always pristine: snippets
+# are only applied when cmake configures from scratch.
+[group('dev')]
+debug expr: (build expr "-S" "zmk-usb-logging" "-p")
+
+# build ZMK's settings-reset firmware, which wipes stored BLE bonds
+#
+# For when split halves bond to the wrong partner, or a host pairing is stuck.
+# Flash it to BOTH halves, then flash the normal firmware back. Hardcodes the
+# board because every keyboard here is a nice!nano v2.
+[group('dev')]
+settings-reset:
+    #!/usr/bin/env bash
+    set -euo pipefail
+    west build -s zmk/app -d "{{ build / 'settings_reset' }}" -b 'nice_nano@2.0.0//zmk' -p \
+        -- -DSHIELD=settings_reset
+    mkdir -p "{{ out }}"
+    cp "{{ build / 'settings_reset' }}/zephyr/zmk.uf2" "{{ out }}/settings_reset.uf2"
+    echo "Wrote {{ out }}/settings_reset.uf2"
+
 # initialize the west workspace
 [group('workspace')]
 init:

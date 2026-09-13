@@ -87,7 +87,41 @@ just build view   # build only targets matching "view"
 just build all -p # pristine rebuild (or `just clean`)
 just draw         # regenerate draw/*.svg from the keymaps
 just sync         # re-sync the workspace after editing config/west.yml
+
+just debug <t>    # build <t> with USB logging, to debug matrix wiring
+just settings-reset  # firmware that wipes stored BLE bonds
 ```
+
+## Debugging
+
+`just debug <target>` builds with ZMK's USB logging snippet. Flash a half, plug it in over USB and
+attach a serial monitor:
+
+```bash
+screen /dev/tty.usbmodem* 115200      # ctrl-a k to quit
+```
+
+Every key press logs its matrix row, column and resolved key position. That tells apart the three
+things that look identical from the keyboard:
+
+| Symptom on press          | Cause                                          |
+| ------------------------- | ---------------------------------------------- |
+| nothing logged            | open circuit — switch, solder joint, or diode   |
+| unexpected row/col        | wire landed on the wrong line                   |
+| right row/col, wrong key  | matrix transform is wrong                       |
+
+## Bluetooth pairing with more than one keyboard
+
+ZMK has no per-keyboard identifier for split pairing: an unbonded central bonds to the first
+peripheral it finds advertising the split service. With two identical 6-column boards powered on
+together for their first pairing, the left half of one can bond to the right half of the other.
+
+So bring up **one pair at a time** — keep the other keyboards powered off until the first has
+bonded and is typing. The same applies to host pairing, since both 6-column boards advertise as
+`adrian_corne_6`.
+
+To recover from a bad bond: `just settings-reset`, flash `firmware/settings_reset.uf2` to **both**
+halves, then flash the normal firmware back.
 
 Flashing is drag-and-drop: double-tap reset on a half and copy the matching `.uf2` from `firmware/`
 onto the USB mass-storage device. (`just flash` exists for boards without UF2 support; none of the
