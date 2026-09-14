@@ -201,6 +201,22 @@ debug expr: (build expr "-S" "zmk-usb-logging" "-p")
 #
 # Studio edits the keymap in the device's own settings, NOT this repo. Treat it
 # as a scratchpad: try a layout, then port what sticks back into base.keymap.
+[doc('build <expr> with ZMK Studio enabled, then flash it')]
+[group('dev')]
+flash-studio expr: (studio expr)
+    #!/usr/bin/env bash
+    set -euo pipefail
+    targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
+
+    [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
+    files=()
+    while IFS=, read -r board shield snippet artifact cmake_args; do
+        artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
+        files+=("{{ out }}/${artifact}-studio.uf2")
+    done <<<"$targets"
+
+    {{ justfile_directory() }}/scripts/flash-uf2.sh "${files[@]}"
+
 [doc('build <expr> with ZMK Studio enabled')]
 [group('dev')]
 studio expr:
