@@ -12,11 +12,14 @@
 # Env:
 #   UF2_VOLUMES   glob for candidate mount points (default: /Volumes/*)
 #   UF2_TIMEOUT   seconds to wait for a bootloader volume (default: 120)
+#   UF2_BACKUP    set to 0 to skip saving the board's existing firmware
+#   UF2_BACKUP_DIR  where backups go (default: firmware/backup)
 
 set -euo pipefail
 
 glob="${UF2_VOLUMES:-/Volumes/*}"
 timeout="${UF2_TIMEOUT:-120}"
+backup_dir="${UF2_BACKUP_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)/firmware/backup}"
 
 bold=$'\033[1m'; red=$'\033[31m'; green=$'\033[32m'; dim=$'\033[2m'; off=$'\033[0m'
 
@@ -70,6 +73,21 @@ for uf2 in "$@"; do
     # are plugged in and only one is in its bootloader.
     sed -n 's/^Model: */  model:   /p; s/^Board-ID: */  boardid: /p' \
         "$vol/INFO_UF2.TXT" 2>/dev/null || true
+
+    # Most UF2 bootloaders (including the nice!nano's) expose the firmware
+    # currently on the board as CURRENT.UF2. Grab it before overwriting --
+    # it is the only copy of whatever is already flashed.
+    if [[ "${UF2_BACKUP:-1}" != "0" && -f "$vol/CURRENT.UF2" ]]; then
+        mkdir -p "$backup_dir"
+        dest="$backup_dir/$(date +%Y%m%dT%H%M%S)-before-${name}"
+        if cp "$vol/CURRENT.UF2" "$dest" 2>/dev/null; then
+            say "  ${green}backed up existing firmware${off} -> $dest"
+        else
+            say "  ${red}could not read CURRENT.UF2 — no backup taken${off}"
+        fi
+    else
+        [[ "${UF2_BACKUP:-1}" == "0" ]] || say "  ${dim}no CURRENT.UF2 on $vol; nothing to back up${off}"
+    fi
 
     say "  copying $name -> $vol/"
     # The board reboots the moment the write completes, so the volume can
