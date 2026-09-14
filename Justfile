@@ -39,17 +39,6 @@ _build_single $board $shield $snippet $artifact cmake_args *west_args:
         mkdir -p "{{ out }}" && cp "$build_dir/zephyr/zmk.bin" "{{ out }}/$artifact.bin"
     fi
 
-# flash firmware for single board & shield combination
-# only needed for boards which do not support UF2
-_flash_single $board $shield $artifact:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
-    build_dir="{{ build / '$artifact' }}"
-
-    echo "Flashing firmware for $artifact..."
-    west flash -d "$build_dir"
-
 # List build targets. The sed chain removes version and build variants,
 # and prints the artifact name if given, otherwise the shield or board.
 [group('build & draw')]
@@ -73,7 +62,13 @@ build expr *west_args:
         just _build_single "$board" "$shield" "$snippet" "$artifact" "$cmake_args" {{ west_args }}
     done
 
-# flash firmware for targets matching <expr>
+# build targets matching <expr>, then copy each onto its board as it appears
+#
+# Waits for a UF2 bootloader volume per half, prints which board it caught, and
+# waits for the reboot before moving to the next -- so the two halves of a
+# split can't accidentally get the same image. Every target here is UF2;
+# `west flash` would need an SWD probe.
+[doc('build <expr>, then copy each firmware onto its board')]
 [group('build & draw')]
 flash expr: (build expr)
     #!/usr/bin/env bash
@@ -81,9 +76,22 @@ flash expr: (build expr)
     targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
 
     [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
-    echo "$targets" | while IFS=, read -r board shield snippet artifact cmake_args; do
-        just _flash_single "$board" "$shield" "$artifact"
-    done
+    files=()
+    while IFS=, read -r board shield snippet artifact cmake_args; do
+        artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
+        files+=("{{ out }}/$artifact.uf2")
+    done <<<"$targets"
+
+    {{ justfile_directory() }}/scripts/flash-uf2.sh "${files[@]}"
+
+# copy already-built .uf2 files onto boards as their bootloaders appear
+#
+# For firmware that isn't a plain build target, e.g.
+# `just flash-file firmware/corne6_left-studio.uf2`.
+[doc('copy already-built .uf2 files onto boards')]
+[group('build & draw')]
+flash-file +files:
+    {{ justfile_directory() }}/scripts/flash-uf2.sh {{ files }}
 
 # parse & plot keymaps for all keyboards matching <expr>
 [group('build & draw')]
@@ -165,6 +173,7 @@ draw expr="all": _check_yq_version
 # Keeps the source laid out like the keyboard. dts-format won't do this: it
 # leaves C-preprocessor macro invocations alone, and a ZMK_BASE_LAYER call is
 # exactly that. Enforced by .github/workflows/lint.yml.
+[doc('re-align the key grids in the keymaps (--check to verify)')]
 [group('dev')]
 fmt *args:
     python3 {{ justfile_directory() }}/scripts/fmt_keymap.py {{ args }}
@@ -177,6 +186,7 @@ fmt *args:
 # wire on the wrong line (logs an unexpected row/col) from a bad transform
 # (logs the right row/col but the wrong position). Always pristine: snippets
 # are only applied when cmake configures from scratch.
+[doc('build <expr> with USB logging, to debug matrix wiring')]
 [group('dev')]
 debug expr: (build expr "-S" "zmk-usb-logging" "-p")
 
@@ -191,6 +201,7 @@ debug expr: (build expr "-S" "zmk-usb-logging" "-p")
 #
 # Studio edits the keymap in the device's own settings, NOT this repo. Treat it
 # as a scratchpad: try a layout, then port what sticks back into base.keymap.
+[doc('build <expr> with ZMK Studio enabled')]
 [group('dev')]
 studio expr:
     #!/usr/bin/env bash
@@ -217,6 +228,7 @@ studio expr:
 # For when split halves bond to the wrong partner, or a host pairing is stuck.
 # Flash it to BOTH halves, then flash the normal firmware back. Hardcodes the
 # board because every keyboard here is a nice!nano v2.
+[doc('build firmware that wipes stored BLE bonds')]
 [group('dev')]
 settings-reset:
     #!/usr/bin/env bash

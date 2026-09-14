@@ -151,9 +151,25 @@ bonded and is typing. The same applies to host pairing, since both 6-column boar
 To recover from a bad bond: `just settings-reset`, flash `firmware/settings_reset.uf2` to **both**
 halves, then flash the normal firmware back.
 
-Flashing is drag-and-drop: double-tap reset on a half and copy the matching `.uf2` from `firmware/`
-onto the USB mass-storage device. (`just flash` exists for boards without UF2 support; none of the
-current targets need it.)
+## Flashing
+
+`just flash <target>` builds, then waits for each half's bootloader volume and copies the right
+image onto it:
+
+```bash
+just flash corne6            # builds both halves, flashes them one after the other
+just flash-file firmware/corne6_left-studio.uf2
+```
+
+It watches for any volume with an `INFO_UF2.TXT` at its root (so it isn't tied to the nice!nano's
+`NICENANO`), prints the board it caught, and waits for the reboot before moving to the next half —
+which is what stops both halves of a split getting the same image. Double-tap reset, or short RST
+to GND twice, when it asks.
+
+`UF2_VOLUMES` and `UF2_TIMEOUT` override the search glob and the wait.
+
+Manual drag-and-drop still works, of course; the script mainly saves you from grabbing the wrong
+`.uf2` out of `firmware/` when several similar ones are sitting there.
 
 ## Which firmware goes on which keyboard
 
