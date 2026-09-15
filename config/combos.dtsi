@@ -4,8 +4,8 @@
   │ LT4 LT3 LT2 LT1 LT0 │ │ RT0 RT1 RT2 RT3 RT4 │
   │ LM4 LM3 LM2 LM1 LM0 │ │ RM0 RM1 RM2 RM3 RM4 │
   │ LB4 LB3 LB2 LB1 LB0 │ │ RB0 RB1 RB2 RB3 RB4 │
-  ╰───────╮ LH2 LH1 LH0 │ │ RH0 RH1 RH2 ╭───────╯
-          ╰─────────────╯ ╰─────────────╯
+  ╰───────────╮ LH1 LH0 │ │ RH0 RH1 ╭───────────╯
+              ╰─────────╯ ╰─────────╯
 
   Column 0 is the *inner* column (index finger), 4 the outer (pinky). These
   labels come from the per-board key-labels header included by the board's
@@ -33,14 +33,15 @@ ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
 ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
 ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
 ZMK_COMBO(l_esc,       &kp ESC,            LT0 LM0)         // T + G
+ZMK_COMBO(r_esc,       &kp ESC,            RT0 RM0)         // Y + H
 
-ZMK_COMBO(caps_word,   &caps_word,         RT0 RT1 RM0 RM1) // Y + U + H + J
 
 /* Alt+X needs its own combo for the same reason Ctrl+V does: the modifier and
  * the letter share a column, so one finger would have to press both. Left Alt
- * is column 3 and so is X. (Right Alt + X works, but M-x is too frequent for
- * a two-ring-finger chord.) */
-ZMK_COMBO(alt_x,       &kp LA(X),          LB4 LB3)         // Z + X
+ * is column 3 and so is X. It takes the slot Ctrl+X used to have -- M-x earns
+ * it more than cut does, and cut is still Ctrl-combo then X, which works
+ * because Ctrl is column 1 and X is column 3. */
+ZMK_COMBO(alt_x,       &kp LA(X),          LB3 LM3)         // X + S
 
 /* Enter the bootloader, per half, without going through a layer. Reset
  * behaviours run on the half the keys are pressed on, so each half can be put
@@ -69,6 +70,5 @@ ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
 ZMK_COMBO(underscore,  &kp UNDERSCORE,     RB1 RB2)         // M + ,
 
 /* Clipboard */
-ZMK_COMBO(c_x,         &kp RC(X),          LB3 LM3)         // X + S
 ZMK_COMBO(c_c,         &kp RC(C),          LB2 LM2)         // C + D
 ZMK_COMBO(c_v,         &kp RC(V),          LB1 LM1)         // V + F
