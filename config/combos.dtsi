@@ -32,8 +32,10 @@ ZMK_COMBO(r_gui,       &kp LGUI,           RT2 RM2)         // I + K
 ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
 ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
 ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
-ZMK_COMBO(l_esc,       &kp ESC,            LM1 LM0)         // F + G
-ZMK_COMBO(r_esc,       &kp ESC,            RT0 RM0)         // Y + H
+/* Three routes to Esc on trial; prune once one of them wins. */
+ZMK_COMBO(esc_fg,      &kp ESC,            LM1 LM0)         // F + G
+ZMK_COMBO(esc_qa,      &kp ESC,            LT4 LM4)         // Q + A
+ZMK_COMBO(esc_yh,      &kp ESC,            RT0 RM0)         // Y + H
 
 
 /* Alt+X needs its own combo for the same reason Ctrl+V does: the modifier and
@@ -79,6 +81,10 @@ ZMK_COMBO(lbkt,        &kp LBKT,           RM2 RB2)         // K + ,
 ZMK_COMBO(rbkt,        &kp RBKT,           RM3 RB3)         // L + .
 ZMK_COMBO(lpar,        &kp LPAR,           RB1 RB2)         // M + ,
 ZMK_COMBO(rpar,        &kp RPAR,           RB2 RB3)         // , + .
+
+/* Launcher. Sends Ctrl+Space, not Gui+Space: the host swaps Cmd and Ctrl, so
+ * keymap-Ctrl arrives as Cmd. Flip to LG(SPACE) if that reasoning is wrong. */
+ZMK_COMBO(launcher,    &kp LC(SPACE),      LB1 LB0)         // V + B
 
 /* Clipboard */
 ZMK_COMBO(c_c,         &kp RC(C),          LB2 LM2)         // C + D
