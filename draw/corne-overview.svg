@@ -106,14 +106,12 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">W</text>
 <text x="-22" y="-22" class="key tl">@</text>
-<text x="-22" y="22" class="key bl">Boot</text>
 <text x="22" y="22" class="key br">BT 2</text>
 </g>
 <g transform="translate(196, 28)" class="key keypos-3">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">E</text>
 <text x="-22" y="-22" class="key tl">#</text>
-<text x="-22" y="22" class="key bl">Reset</text>
 <text x="22" y="22" class="key br">BT 3</text>
 </g>
 <g transform="translate(252, 35)" class="key keypos-4">
@@ -132,7 +130,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">Y</text>
 <text x="-22" y="22" class="key bl">*</text>
-<text x="22" y="22" class="key br">Boot</text>
 </g>
 <g transform="translate(588, 35)" class="key keypos-7">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -167,31 +164,26 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(84, 105)" class="key keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">A</text>
-<text x="22" y="-22" class="key tr">Gui</text>
 <text x="22" y="22" class="key br">F1</text>
 </g>
 <g transform="translate(140, 91)" class="key keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">S</text>
-<text x="22" y="-22" class="key tr">PgUp</text>
 <text x="22" y="22" class="key br">F2</text>
 </g>
 <g transform="translate(196, 84)" class="key keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">D</text>
-<text x="22" y="-22" class="key tr">PgDn</text>
 <text x="22" y="22" class="key br">F3</text>
 </g>
 <g transform="translate(252, 91)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">F</text>
-<text x="22" y="-22" class="key tr">Home</text>
 <text x="22" y="22" class="key br">F4</text>
 </g>
 <g transform="translate(308, 98)" class="key keypos-17">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">G</text>
-<text x="22" y="-22" class="key tr">End</text>
 <text x="22" y="22" class="key br">F5</text>
 </g>
 <g transform="translate(532, 98)" class="key keypos-18">
@@ -238,7 +230,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(84, 161)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">Z</text>
-<text x="-22" y="22" class="key bl">Shift</text>
 <text x="22" y="22" class="key br">F6</text>
 </g>
 <g transform="translate(140, 147)" class="key keypos-26">
@@ -503,12 +494,12 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <text x="308" y="126" class="combo tap">PgDn</text>
 </g>
 <g class="combo combopos-15">
-<rect rx="6" ry="6" x="98" y="141" width="28" height="26" class="combo"/>
-<text x="112" y="154" class="combo tap">Home</text>
+<rect rx="6" ry="6" x="154" y="130" width="28" height="26" class="combo"/>
+<text x="168" y="144" class="combo tap">Home</text>
 </g>
 <g class="combo combopos-16">
-<rect rx="6" ry="6" x="154" y="130" width="28" height="26" class="combo"/>
-<text x="168" y="144" class="combo tap">End</text>
+<rect rx="6" ry="6" x="210" y="130" width="28" height="26" class="combo"/>
+<text x="224" y="144" class="combo tap">End</text>
 </g>
 <g class="combo combopos-17">
 <rect rx="6" ry="6" x="154" y="74" width="28" height="26" class="combo"/>
@@ -581,14 +572,10 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <text x="672" y="144" class="combo tap">)</text>
 </g>
 <g class="combo combopos-33">
-<rect rx="6" ry="6" x="266" y="138" width="28" height="26" class="combo"/>
-<text x="280" y="150" class="combo tap">Ctl+Spc</text>
-</g>
-<g class="combo combopos-34">
 <rect rx="6" ry="6" x="182" y="99" width="28" height="26" class="combo"/>
 <text x="196" y="112" class="combo tap">Copy</text>
 </g>
-<g class="combo combopos-35">
+<g class="combo combopos-34">
 <rect rx="6" ry="6" x="238" y="106" width="28" height="26" class="combo"/>
 <text x="252" y="119" class="combo tap">Paste</text>
 </g>

@@ -57,8 +57,8 @@ ZMK_COMBO(boot_r,      &bootloader,        RT0 RT2 RT4 RB4 RH0, DEF LOWER RAISE 
  * Puts the paging cluster within reach without holding a layer. */
 ZMK_COMBO(pg_up,       &kp PG_UP,          LT0 LM0)         // T + G
 ZMK_COMBO(pg_dn,       &kp PG_DN,          LM0 LB0)         // G + B
-ZMK_COMBO(home,        &kp HOME,           LB4 LB3)         // Z + X
-ZMK_COMBO(end,         &kp END,            LB3 LB2)         // X + C
+ZMK_COMBO(home,        &kp HOME,           LB3 LB2)         // X + C
+ZMK_COMBO(end,         &kp END,            LB2 LB1)         // C + V
 
 /* Layer access */
 ZMK_COMBO(num_layer,   &mo NUM,            LM2 LM3)         // D + S
@@ -81,10 +81,6 @@ ZMK_COMBO(lbkt,        &kp LBKT,           RM2 RB2)         // K + ,
 ZMK_COMBO(rbkt,        &kp RBKT,           RM3 RB3)         // L + .
 ZMK_COMBO(lpar,        &kp LPAR,           RB1 RB2)         // M + ,
 ZMK_COMBO(rpar,        &kp RPAR,           RB2 RB3)         // , + .
-
-/* Launcher. Sends Ctrl+Space, not Gui+Space: the host swaps Cmd and Ctrl, so
- * keymap-Ctrl arrives as Cmd. Flip to LG(SPACE) if that reasoning is wrong. */
-ZMK_COMBO(launcher,    &kp LC(SPACE),      LB1 LB0)         // V + B
 
 /* Clipboard */
 ZMK_COMBO(c_c,         &kp RC(C),          LB2 LM2)         // C + D
