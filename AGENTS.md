@@ -20,25 +20,59 @@ future me. For toolchain setup see [docs/build-env.md](docs/build-env.md).
   `.github/workflows/build.yml` (the stock `zmkfirmware/zmk` reusable workflow) — no local setup
   needed for a firmware artifact, just the Actions tab.
 
-## How the multi-board layout works
+## The shape of the keymap
 
-`config/base.keymap` defines all five layers exactly once, for 36 keys (3x5+3), using the
-standardized key labels from [zmk-helpers](https://github.com/urob/zmk-helpers): `LT0`–`LT4`,
-`LM0`–`LM4`, `LB0`–`LB4` and `LH0`–`LH2` for the left top/middle/bottom rows and thumbs, mirrored
-with `R` on the right. **Column `0` is the innermost (index finger), `4` the outermost (pinky).**
-Combos (`config/combos.dtsi`) are written against these labels, so they adapt to any board
-automatically.
+**34 keys: 3x5 plus two thumbs per side, and almost everything else is a combo.** Four layers
+became three, six thumbs became four, and 43 combos absorbed the difference. The driver was that
+multiple layers and a third thumb felt clunky after two years; the target is the 34-key Pocket
+Keyboard being built, with the Cornes as transitional hardware carrying dead keys.
 
-`base.keymap` intentionally includes **no** key-labels header itself. Each board has a small entry
-keymap that must, in this order:
+```
+Base    Q W E R T / Y U I O P …        thumbs: Shift  Tab/Num │ Nav  Spc
+Nav     arrows on hjkl                 nothing else
+Num     numpad right, Tab/S-Tab thumbs
+Admin   BT profiles, F-keys, media, sys_reset
+```
 
-1. optionally `#define CONFIG_WIRELESS` (enables the Bluetooth keys on the Admin layer),
-2. define a `ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)` macro placing the eight 36-key
-   blocks onto the board's full physical grid, filling leftover keys with `&none` or extras,
-3. include the matching key-labels header from zmk-helpers,
-4. `#include "base.keymap"`.
+Everything else — every modifier, Esc, Enter, Bspc, Del, the paging cluster, and every symbol
+outside the numpad — is a combo. See `config/combos.dtsi`.
 
-A board with exactly 36 keys needs no adapter — `base.keymap` has a pass-through fallback.
+### Why modifiers are combos rather than home-row mods
+
+A **vertical** combo is two keys in one column, so one finger covers both. Normal typing rolls
+*across* columns, never down them, so a vertical pair cannot be triggered by accident — it is safe
+by construction, with no timing to tune. That gives a modifier for roughly the cost of one
+keypress, which is most of what home-row mods buy, without hold-tap timing and without colliding
+with the combos that already sit on the home row.
+
+Mods are mirrored and allocated by finger strength: index Ctrl, middle Gui, ring Alt, pinky Shift.
+A consequence worth knowing: **a modifier cannot be used with a letter in its own column**, because
+one finger would have to press both. That is why `Ctrl+V` and `Alt+X` have dedicated combos — V is
+in Ctrl's column, X is in Alt's.
+
+### Placing a new combo
+
+- **Vertical pairs need no check.** Same column, same finger.
+- **Horizontal pairs must be measured**: `python3 scripts/bigrams.py fg tg zx`. Under ~1.5 per 10k
+  is safe; 1.5–6 has worked in practice (`d+s` at 5.9 never misfires); above 6 do not. The whole
+  top row right of `y+u` is unusable — `io` is 30, `op` 34, `re` 144.
+- **Skip-one pairs** have a risk the bigram misses: rolling through the key between them puts both
+  down. Measure the three-key run, not just the pair.
+- **The index finger owns two columns**, so `f+g`, `v+b` and their mirrors are one-finger
+  horizontals and safe like verticals. Of the 26 one-finger pairs, 25 are taken and the last
+  (`r+t`) is unusable at 38 per 10k. Anything further goes on a two-finger pair.
+
+### Per-board adapters
+
+`base.keymap` deliberately includes **no** key-labels header. Each board has a small entry keymap
+that, in this order: optionally `#define CONFIG_WIRELESS` (enables the Bluetooth keys on Admin),
+defines a `ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)` macro placing the eight 34-key
+blocks onto its physical grid, includes the matching key-labels header from
+[zmk-helpers](https://github.com/urob/zmk-helpers), then `#include "base.keymap"`.
+
+Labels are `LT0`–`LT4`, `LM0`–`LM4`, `LB0`–`LB4` and `LH0`–`LH1`, mirrored with `R`.
+**Column `0` is the innermost (index), `4` the outermost (pinky).** A true 34-key board needs no
+adapter — `base.keymap` has a pass-through fallback, and `draw/base34.keymap` is exactly that.
 
 ## Why all three Corne PCBs share one keymap
 
@@ -46,7 +80,8 @@ ZMK resolves the keymap by shield-name prefix (see `zmk/app/boards/post_boards_s
 `corne_left`, `corne_right` and the `corne_* nice_view_adapter nice_view` variants *all* resolve to
 `config/corne.keymap`. Rather than fight that with `-DKEYMAP_FILE` overrides, all three build
 against the default 42-key `foostan_corne_6col_layout`. On the 5-column boards the outer-column
-switches physically don't exist, so those bindings are simply never triggered.
+switches physically don't exist, so those bindings are simply never triggered — and the outer
+thumbs have been physically removed from every board, so `corne.keymap` pads in two directions.
 
 The handwired board is the exception: it has its own shield, and therefore its own
 `config/handwired_corne.keymap`, with no collision. Its name deliberately does *not* start with
@@ -74,7 +109,7 @@ silently beat any per-shield override.
 | --------------------------------- | ------------------------------------------- |
 | Layers, thumb keys                | `config/base.keymap`                        |
 | Combos                            | `config/combos.dtsi` (position diagram at top) |
-| Outer columns on 6-column boards  | `config/corne.keymap` (`OUTER_T/M/B`)       |
+| Outer columns / thumbs padding    | `config/corne.keymap` (`OUTER_T/M/B/TH`)    |
 | Per-board physical mapping        | `config/<board>.keymap`                     |
 | Handwired matrix / pins           | `config/boards/shields/handwired_corne/`    |
 | Settings for all keyboards        | `config/nice_nano.conf`                     |
@@ -82,6 +117,7 @@ silently beat any per-shield override.
 | Build targets                     | `build.yaml`                                |
 | Keymap diagram styling / legends  | `draw/config.yaml`                          |
 | Which keyboards get drawn         | `Justfile` (`keyboards` array in `draw`)    |
+| Combo misfire risk                | `scripts/bigrams.py <pair>...`              |
 | ZMK / module versions             | `config/west.yml` (then `just sync`)        |
 
 ## Adding another board
@@ -97,9 +133,10 @@ doesn't know about. The steps:
    tidier long-term home.
 2. Reuse a stock physical layout if one fits rather than hand-writing `key_physical_attrs`.
    `<layouts/foostan/corne/5column.dtsi>` is exactly 3x5+3 per half and its key order matches
-   zmk-helpers' `36.h`, which is why the handwired board needs no adapter at all.
+   zmk-helpers' `36.h`.
 3. Create `config/<name>.keymap`: `#define CONFIG_WIRELESS`, the matching key-labels header, then
-   `#include "base.keymap"`. A 36-key board needs no `ZMK_BASE_LAYER` — the fallback covers it.
+   `#include "base.keymap"`. A 34-key board needs no `ZMK_BASE_LAYER` — the fallback covers it;
+   anything larger needs the macro to pad.
 4. Add `build.yaml` entries with `artifact-name`s, and an entry in the `keyboards` array of the
    `draw` recipe so it gets its own diagram.
 5. Check the generated `.build/<target>/zephyr/zephyr.dts`: the `kscan` GPIOs, the transform's
@@ -107,22 +144,13 @@ doesn't know about. The steps:
    That catches everything except whether the matrix matches the physical wiring, which only
    flashing can tell you.
 
-## Migrating to home-row mods
+## Home-row mods: considered and rejected
 
-Deliberately not done yet. When the time comes it is a single edit to `config/base.keymap`:
+Not a future step — a decision. Vertical combos already give a one-finger modifier, so HRMs would
+buy little, and **28 of the combos sit on home-row keys**, every one of which an HRM would overlap.
+Making that work needs the hold-tap-inside-a-combo hack from
+[urob's config](https://github.com/urob/zmk-config#timeless-homerow-mods). Not worth the risk here.
 
-```c
-#define MAKE_HRM(NAME, HOLD, TAP, TRIGGER_POS)                                 \
-  ZMK_HOLD_TAP(NAME, bindings = <HOLD>, <TAP>; flavor = "balanced";            \
-               tapping-term-ms = <280>; quick-tap-ms = <175>;                  \
-               require-prior-idle-ms = <150>; hold-trigger-on-release;         \
-               hold-trigger-key-positions = <TRIGGER_POS>;)
-
-MAKE_HRM(hml, &kp, &kp, KEYS_R THUMBS) // Left-hand HRMs.
-MAKE_HRM(hmr, &kp, &kp, KEYS_L THUMBS) // Right-hand HRMs.
-```
-
-then swap the home-row `&kp` bindings for `&hml <mod> <key>` / `&hmr <mod> <key>`. Every board picks
-it up automatically, because `KEYS_L` / `KEYS_R` / `THUMBS` come from the per-board key-labels
-header. No extra modules are required — `require-prior-idle-ms` and `hold-trigger-on-release` are
-both upstream ZMK. See [urob's write-up](https://github.com/urob/zmk-config#timeless-homerow-mods).
+If that ever gets revisited, the structure still supports it: `KEYS_L` / `KEYS_R` / `THUMBS` come
+from the per-board key-labels header, so positional trigger positions would adapt to every board
+for free.

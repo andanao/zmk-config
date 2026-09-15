@@ -88,11 +88,18 @@ just build all -p # pristine rebuild (or `just clean`)
 just draw         # regenerate draw/*.svg from the keymaps
 just sync         # re-sync the workspace after editing config/west.yml
 
+just flash <t>    # build <t> and flash the LEFT half (flash-both for the pair)
 just fmt          # re-align the key grids in the keymaps (--check to verify)
+just clean        # drop the build cache and firmware/
+
 just debug <t>    # build <t> with USB logging, to debug matrix wiring
 just settings-reset  # firmware that wipes stored BLE bonds
 just studio <t>   # build <t> with ZMK Studio enabled (opt-in)
+just flash-studio <t>
 ```
+
+`python3 scripts/bigrams.py <pair>...` measures how often a candidate combo's key pair occurs in
+Adrian's own writing, which is how horizontal combo placements get checked. See AGENTS.md.
 
 ## ZMK Studio
 
@@ -153,16 +160,19 @@ halves, then flash the normal firmware back.
 
 ## Flashing
 
-`just flash <target>` builds, then waits for each half's bootloader volume and copies the right
-image onto it:
+`just flash <target>` builds, then waits for the bootloader volume and copies the right image onto
+it. **It flashes the left half only** — that is the split central, so it is the half a keymap
+change actually needs:
 
 ```bash
-just flash corne6            # builds both halves, flashes them one after the other
+just flash corne6            # left half
+just flash-both corne6       # both halves, one after the other
 just flash-file firmware/corne6_left-studio.uf2
 ```
 
 It watches for any volume with an `INFO_UF2.TXT` at its root (so it isn't tied to the nice!nano's
-`NICENANO`), prints the board it caught, and waits for the reboot before moving to the next half —
+`NICENANO`), prints the board it caught, backs up the firmware already on it into
+`firmware/backup/`, and waits for the reboot before moving to the next half —
 which is what stops both halves of a split getting the same image. Double-tap reset, or short RST
 to GND twice, when it asks.
 
