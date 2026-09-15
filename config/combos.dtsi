@@ -15,9 +15,25 @@
 // "active on every layer" — matching how these combos behaved before the
 // zmk-helpers migration.
 
-/* Modifiers */
+/* Modifiers — vertical pairs, one per column, mirrored.
+ *
+ * A vertical pair is same-column and therefore same-finger, so one finger spans
+ * both switches and normal typing can never roll into it: rolls travel across
+ * columns, not down them. That is why these need no bigram check, unlike the
+ * horizontal combos further down.
+ *
+ * Allocated by finger strength, strongest to weakest:
+ *   index  Ctrl    middle  Gui    ring  Alt    pinky  Shift / Esc
+ */
 ZMK_COMBO(l_ctrl,      &kp LCTRL,          LT1 LM1)         // R + F
-ZMK_COMBO(r_ctrl,      &kp RCTRL,          RT1 RM1)         // U + J
+ZMK_COMBO(r_ctrl,      &kp LCTRL,          RT1 RM1)         // U + J
+ZMK_COMBO(l_gui,       &kp LGUI,           LT2 LM2)         // E + D
+ZMK_COMBO(r_gui,       &kp LGUI,           RT2 RM2)         // I + K
+ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
+ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
+ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
+ZMK_COMBO(l_esc,       &kp ESC,            LT4 LM4)         // Q + A
+
 ZMK_COMBO(caps_word,   &caps_word,         RT0 RT1 RM0 RM1) // Y + U + H + J
 
 /* Layer access */
