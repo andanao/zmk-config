@@ -32,7 +32,7 @@ ZMK_COMBO(r_gui,       &kp LGUI,           RT2 RM2)         // I + K
 ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
 ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
 ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
-ZMK_COMBO(l_esc,       &kp ESC,            LT0 LM0)         // T + G
+ZMK_COMBO(l_esc,       &kp ESC,            LM1 LM0)         // F + G
 ZMK_COMBO(r_esc,       &kp ESC,            RT0 RM0)         // Y + H
 
 
@@ -51,6 +51,13 @@ ZMK_COMBO(alt_x,       &kp LA(X),          LB3 LM3)         // X + S
 ZMK_COMBO(boot_l,      &bootloader,        LT4 LT2 LT0 LB4 LH0, DEF LOWER RAISE NUM ADMIN, 200)
 ZMK_COMBO(boot_r,      &bootloader,        RT0 RT2 RT4 RB4 RH0, DEF LOWER RAISE NUM ADMIN, 200)
 
+/* Navigation — same-column or same-finger, so none of these can be rolled into.
+ * Puts the paging cluster within reach without holding a layer. */
+ZMK_COMBO(pg_up,       &kp PG_UP,          LT0 LM0)         // T + G
+ZMK_COMBO(pg_dn,       &kp PG_DN,          LM0 LB0)         // G + B
+ZMK_COMBO(home,        &kp HOME,           LB4 LB3)         // Z + X
+ZMK_COMBO(end,         &kp END,            LB3 LB2)         // X + C
+
 /* Layer access */
 ZMK_COMBO(num_layer,   &mo NUM,            LM2 LM3)         // D + S
 ZMK_COMBO(admin_layer, &mo ADMIN,          RH0 RB4)         // inner thumb + /
@@ -67,7 +74,11 @@ ZMK_COMBO(asterisk,    &kp ASTERISK,       RT0 RT1)         // Y + U
 ZMK_COMBO(minus,       &kp KP_MINUS,       RM0 RM1)         // H + J
 ZMK_COMBO(plus,        &kp KP_PLUS,        RB0 RB1)         // N + M
 ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
-ZMK_COMBO(underscore,  &kp UNDERSCORE,     RB1 RB2)         // M + ,
+ZMK_COMBO(underscore,  &kp UNDERSCORE,     RM0 RB0)         // H + N
+ZMK_COMBO(lbkt,        &kp LBKT,           RM3 RB3)         // L + .
+ZMK_COMBO(rbkt,        &kp RBKT,           RM2 RB2)         // K + ,
+ZMK_COMBO(lpar,        &kp LPAR,           RB1 RB2)         // M + ,
+ZMK_COMBO(rpar,        &kp RPAR,           RB2 RB3)         // , + .
 
 /* Clipboard */
 ZMK_COMBO(c_c,         &kp RC(C),          LB2 LM2)         // C + D
