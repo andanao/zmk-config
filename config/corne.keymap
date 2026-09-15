@@ -4,27 +4,27 @@
  * Used by all three Corne PCBs in this repo: the two 6-column boards and the
  * 5-column nice!view board. ZMK resolves the keymap by shield-name prefix, so
  * `corne_left`, `corne_right` and the `… nice_view_adapter nice_view` variants
- * all land here. On the 5-column board the outer-column switches simply don't
- * exist, so their bindings are inert — which is how this keymap has always
- * worked.
+ * all land here.
+ *
+ * The shared keymap is 34 keys, so this pads in two directions: the outer
+ * column on each half, and the outer thumb on each half. Both are unbound --
+ * the outer thumbs are physically removed from these boards, and the outer
+ * columns go unused so every keyboard behaves identically.
  */
 
 #define CONFIG_WIRELESS
 
-// Outer columns. `&none` keeps all Corne variants behaving identically and
-// matches the pre-existing keymap. For stock-Corne behaviour on the 6-column
-// boards, set these to e.g. `&kp TAB`, `&kp LCTRL` and `&kp LSHFT` (left) —
-// note the same binding is used on both halves and on every layer.
-#define OUTER_T &none // top    row, outer column on both halves
-#define OUTER_M &none // middle row
-#define OUTER_B &none // bottom row
+#define OUTER_T  &none // top    row, outer column on both halves
+#define OUTER_M  &none // middle row
+#define OUTER_B  &none // bottom row
+#define OUTER_TH &none // outer thumb on both halves
 
 #define ZMK_BASE_LAYER(name, LT, RT, LM, RM, LB, RB, LH, RH)                   \
     ZMK_LAYER(name,                                                            \
-        OUTER_T   LT   RT   OUTER_T                                            \
-        OUTER_M   LM   RM   OUTER_M                                            \
-        OUTER_B   LB   RB   OUTER_B                                            \
-                  LH   RH                                                      \
+        OUTER_T    LT   RT   OUTER_T                                           \
+        OUTER_M    LM   RM   OUTER_M                                           \
+        OUTER_B    LB   RB   OUTER_B                                           \
+        OUTER_TH   LH   RH   OUTER_TH                                          \
     )
 
 #include <zmk-helpers/key-labels/42.h>

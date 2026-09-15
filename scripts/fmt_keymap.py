@@ -27,7 +27,7 @@ from pathlib import Path
 #   alpha  4 + 4*14 + 12 = 72
 #   thumb 30 + 3*14      = 72
 LEFT_ALPHA = 4
-LEFT_THUMB = 30
+LEFT_THUMB = 30    # 3-thumb origin; 2 thumbs start one cell further in
 RIGHT_START = 76
 CELL = 14
 ALPHA_LAST = 12
@@ -70,8 +70,8 @@ def format_row(line: str) -> str | None:
         return None
     if len(left) == 5:
         start, widths = LEFT_ALPHA, [CELL] * 4 + [ALPHA_LAST]
-    elif len(left) == 3:
-        start, widths = LEFT_THUMB, [CELL] * 3
+    elif len(left) == 2:
+        start, widths = LEFT_THUMB + CELL, [CELL] * 2
     else:
         return None
 

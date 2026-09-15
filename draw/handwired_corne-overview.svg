@@ -1,4 +1,4 @@
-<svg width="748" height="614" viewBox="0 0 748 614" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="748" height="579" viewBox="0 0 748 579" class="keymap" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>/* start glyphs */
 <svg id="mdi:play-pause">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-play-pause" viewBox="0 0 24 24"><path d="M3,5V19L11,12M13,19H16V5H13M18,5V19H21V5" /></svg>
@@ -254,7 +254,7 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(476, 154)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">N</text>
-<text x="-22" y="22" class="key bl">+</text>
+<text x="-22" y="22" class="key bl">.</text>
 <text x="22" y="22" class="key br">F11</text>
 </g>
 <g transform="translate(532, 147)" class="key keypos-26">
@@ -284,8 +284,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 </g>
 <g transform="translate(168, 205)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="1" class="key tap">Esc</text>
-<text x="0" y="22" class="key hold">Alt</text>
 </g>
 <g transform="translate(230, 213) rotate(15.0)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -309,13 +307,11 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 </g>
 <g transform="translate(560, 205)" class="key keypos-35">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="1" class="key tap">Gui</text>
-<text x="-22" y="22" class="key bl">.</text>
 </g>
 </g>
 </g>
 <g transform="translate(10, 285)" class="layer-Combos">
-<g transform="translate(0, 45)">
+<g transform="translate(0, 10)">
 <g transform="translate(28, 49)" class="key keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
@@ -457,18 +453,12 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <text x="252" y="70" class="combo tap">Esc</text>
 </g>
 <g class="combo combopos-8">
-<path d="M504,-22 h-22 a6.0,6.0 0 0 0 -6.0,6.0 v39" class="combo"/>
-<path d="M504,-22 h22 a6.0,6.0 0 0 1 6.0,6.0 v32" class="combo"/>
-<path d="M504,-22 h-22 a6.0,6.0 0 0 0 -6.0,6.0 v95" class="combo"/>
-<path d="M504,-22 h22 a6.0,6.0 0 0 1 6.0,6.0 v88" class="combo"/>
-<rect rx="6" ry="6" x="490" y="-35" width="28" height="26" class="combo"/>
-<text x="504" y="-22" class="combo tap">
-<tspan x="504" dy="-0.6em">Caps</tspan><tspan x="504" dy="1.2em">Word</tspan>
-</text>
+<rect rx="6" ry="6" x="462" y="57" width="28" height="26" class="combo"/>
+<text x="476" y="70" class="combo tap">Esc</text>
 </g>
 <g class="combo combopos-9">
-<rect rx="6" ry="6" x="42" y="141" width="28" height="26" class="combo"/>
-<text x="56" y="154" class="combo tap">Alt+X</text>
+<rect rx="6" ry="6" x="70" y="106" width="28" height="26" class="combo"/>
+<text x="84" y="119" class="combo tap">Alt+X</text>
 </g>
 <g class="combo combopos-10">
 <path d="M149,101 l-103,-44" class="combo"/>
@@ -543,17 +533,13 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <text x="560" y="144" class="combo tap">_</text>
 </g>
 <g class="combo combopos-24">
-<rect rx="6" ry="6" x="70" y="106" width="28" height="26" class="combo"/>
-<text x="84" y="119" class="combo tap">Cut</text>
-</g>
-<g class="combo combopos-25">
 <rect rx="6" ry="6" x="126" y="99" width="28" height="26" class="combo"/>
 <text x="140" y="112" class="combo tap">Copy</text>
 </g>
-<g class="combo combopos-26">
+<g class="combo combopos-25">
 <rect rx="6" ry="6" x="182" y="106" width="28" height="26" class="combo"/>
 <text x="196" y="119" class="combo tap">Paste</text>
 </g>
 </g>
 </g>
-<text x="738.0" y="609.0" class="footer">andanao/zmk-config</text></svg>
+<text x="738.0" y="574.0" class="footer">andanao/zmk-config</text></svg>
