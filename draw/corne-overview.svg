@@ -144,13 +144,11 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(644, 28)" class="key keypos-8">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">I</text>
-<text x="-22" y="-22" class="key tl">(</text>
 <text x="-22" y="22" class="key bl">8</text>
 </g>
 <g transform="translate(700, 35)" class="key keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">O</text>
-<text x="-22" y="-22" class="key tl">)</text>
 <text x="-22" y="22" class="key bl">9</text>
 </g>
 <g transform="translate(756, 49)" class="key keypos-10">
@@ -213,7 +211,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(644, 84)" class="key keypos-20">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">K</text>
-<text x="-22" y="-22" class="key tl">[</text>
 <text x="22" y="-22" class="key tr">↑</text>
 <text x="-22" y="22" class="key bl">5</text>
 <use href="#mdi:volume-high" xlink:href="#mdi:volume-high" x="12" y="12" height="10" width="10.0" class="key br glyph mdi:volume-high"/>
@@ -221,7 +218,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(700, 91)" class="key keypos-21">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">L</text>
-<text x="-22" y="-22" class="key tl">]</text>
 <text x="22" y="-22" class="key tr">→</text>
 <text x="-22" y="22" class="key bl">6</text>
 <use href="#mdi:skip-forward" xlink:href="#mdi:skip-forward" x="12" y="12" height="10" width="10.0" class="key br glyph mdi:skip-forward"/>
@@ -281,13 +277,11 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <g transform="translate(644, 140)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">,</text>
-<text x="-22" y="-22" class="key tl">{</text>
 <text x="-22" y="22" class="key bl">2</text>
 </g>
 <g transform="translate(700, 147)" class="key keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="1" class="key tap">.</text>
-<text x="-22" y="-22" class="key tl">}</text>
 <text x="-22" y="22" class="key bl">3</text>
 </g>
 <g transform="translate(756, 161)" class="key keypos-34">
@@ -585,12 +579,12 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <text x="532" y="126" class="combo tap">_</text>
 </g>
 <g class="combo combopos-28">
-<rect rx="6" ry="6" x="686" y="106" width="28" height="26" class="combo"/>
-<text x="700" y="119" class="combo tap">[</text>
+<rect rx="6" ry="6" x="630" y="99" width="28" height="26" class="combo"/>
+<text x="644" y="112" class="combo tap">[</text>
 </g>
 <g class="combo combopos-29">
-<rect rx="6" ry="6" x="630" y="99" width="28" height="26" class="combo"/>
-<text x="644" y="112" class="combo tap">]</text>
+<rect rx="6" ry="6" x="686" y="106" width="28" height="26" class="combo"/>
+<text x="700" y="119" class="combo tap">]</text>
 </g>
 <g class="combo combopos-30">
 <rect rx="6" ry="6" x="602" y="130" width="28" height="26" class="combo"/>

@@ -75,8 +75,8 @@ ZMK_COMBO(minus,       &kp KP_MINUS,       RM0 RM1)         // H + J
 ZMK_COMBO(plus,        &kp KP_PLUS,        RB0 RB1)         // N + M
 ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
 ZMK_COMBO(underscore,  &kp UNDERSCORE,     RM0 RB0)         // H + N
-ZMK_COMBO(lbkt,        &kp LBKT,           RM3 RB3)         // L + .
-ZMK_COMBO(rbkt,        &kp RBKT,           RM2 RB2)         // K + ,
+ZMK_COMBO(lbkt,        &kp LBKT,           RM2 RB2)         // K + ,
+ZMK_COMBO(rbkt,        &kp RBKT,           RM3 RB3)         // L + .
 ZMK_COMBO(lpar,        &kp LPAR,           RB1 RB2)         // M + ,
 ZMK_COMBO(rpar,        &kp RPAR,           RB2 RB3)         // , + .
 
