@@ -32,9 +32,23 @@ ZMK_COMBO(r_gui,       &kp LGUI,           RT2 RM2)         // I + K
 ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
 ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
 ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
-ZMK_COMBO(l_esc,       &kp ESC,            LT4 LM4)         // Q + A
+ZMK_COMBO(l_esc,       &kp ESC,            LT0 LM0)         // T + G
 
 ZMK_COMBO(caps_word,   &caps_word,         RT0 RT1 RM0 RM1) // Y + U + H + J
+
+/* Alt+X needs its own combo for the same reason Ctrl+V does: the modifier and
+ * the letter share a column, so one finger would have to press both. Left Alt
+ * is column 3 and so is X. (Right Alt + X works, but M-x is too frequent for
+ * a two-ring-finger chord.) */
+ZMK_COMBO(alt_x,       &kp LA(X),          LB4 LB3)         // Z + X
+
+/* Enter the bootloader, per half, without going through a layer. Reset
+ * behaviours run on the half the keys are pressed on, so each half can be put
+ * into flashing mode alone. Five keys and a wider window: impossible to hit by
+ * accident, deliberate to hit on purpose. Note combos are processed on the
+ * central, so the right-hand one still needs the halves connected. */
+ZMK_COMBO(boot_l,      &bootloader,        LT4 LT2 LT0 LB4 LH0, DEF LOWER RAISE NUM ADMIN, 200)
+ZMK_COMBO(boot_r,      &bootloader,        RT0 RT2 RT4 RB4 RH0, DEF LOWER RAISE NUM ADMIN, 200)
 
 /* Layer access */
 ZMK_COMBO(num_layer,   &mo NUM,            LM2 LM3)         // D + S
