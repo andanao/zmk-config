@@ -32,10 +32,7 @@ ZMK_COMBO(r_gui,       &kp LGUI,           RT2 RM2)         // I + K
 ZMK_COMBO(l_alt,       &kp LALT,           LT3 LM3)         // W + S
 ZMK_COMBO(r_alt,       &kp LALT,           RT3 RM3)         // O + L
 ZMK_COMBO(r_shift,     &kp LSHFT,          RT4 RM4)         // P + ;
-/* Three routes to Esc on trial; prune once one of them wins. */
-ZMK_COMBO(esc_fg,      &kp ESC,            LM1 LM0)         // F + G
-ZMK_COMBO(esc_qa,      &kp ESC,            LT4 LM4)         // Q + A
-ZMK_COMBO(esc_yh,      &kp ESC,            RT0 RM0)         // Y + H
+ZMK_COMBO(esc,         &kp ESC,            LT4 LM4)         // Q + A
 
 
 /* Alt+X needs its own combo for the same reason Ctrl+V does: the modifier and
@@ -73,6 +70,9 @@ ZMK_COMBO(del,         &kp DEL,            RM1 RM3)         // J + L
 
 /* Symbols */
 ZMK_COMBO(asterisk,    &kp ASTERISK,       RT0 RT1)         // Y + U
+ZMK_COMBO(hash,        &kp HASH,           LM1 LM0)         // F + G
+ZMK_COMBO(caret,       &kp CARET,          RT0 RM0)         // Y + H
+ZMK_COMBO(pipe,        &kp PIPE,           RB3 RB4)         // . + /
 ZMK_COMBO(minus,       &kp MINUS,          RM0 RM1)         // H + J
 ZMK_COMBO(plus,        &kp PLUS,            RB0 RB1)         // N + M
 ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
