@@ -116,28 +116,33 @@ draw expr="all": _check_yq_version
     #!/usr/bin/env bash
     set -euo pipefail
 
-    # One entry per physical keyboard: "<config/NAME.keymap>|<layout args>".
-    # The layout args tell keymap-drawer which physical layout to render; see
-    # https://github.com/caksoylar/keymap-drawer/blob/main/PHYSICAL_LAYOUTS.md
-    keyboards=(
-        "corne|-z corne"
-        "handwired_corne|-z corne -l foostan_corne_5col_layout"
-    )
+    # Each diagram: where the keymap lives, and the physical layout to draw it
+    # on. base34 is the shared keymap with no board padding -- see
+    # draw/base34.keymap. Layout args are arrays because the cols/thumbs
+    # notation contains a space.
+    keyboards=(corne handwired_corne base34)
 
     matched=0
-    for entry in "${keyboards[@]}"; do
-        name="${entry%%|*}"
-        layout="${entry#*|}"
+    for name in "${keyboards[@]}"; do
         if [[ "{{ expr }}" != "all" && "$name" != *"{{ expr }}"* ]]; then
             continue
         fi
         matched=1
 
+        case "$name" in
+            corne)           src="{{ config }}/corne.keymap"
+                             layout=(-z corne) ;;
+            handwired_corne) src="{{ config }}/handwired_corne.keymap"
+                             layout=(-z corne -l foostan_corne_5col_layout) ;;
+            base34)          src="{{ draw }}/base34.keymap"
+                             layout=(-n "33333+2 2+33333") ;;
+        esac
+
         echo "Drawing $name..."
-        keymap -c "{{ draw }}/config.yaml" parse -z "{{ config }}/$name.keymap" \
+        keymap -c "{{ draw }}/config.yaml" parse -z "$src" \
             --virtual-layers Combos >"{{ draw }}/$name.yaml"
         yq -Yi '.combos.[].l = ["Combos"]' "{{ draw }}/$name.yaml"
-        keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$name.yaml" $layout \
+        keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$name.yaml" "${layout[@]}" \
             >"{{ draw }}/$name.svg"
 
         # Condensed overview: fold the three non-base layers into corner legends
@@ -171,7 +176,7 @@ draw expr="all": _check_yq_version
             .combos = [.combos[] | .l = ["Combos"]]
         '
         yq -y "$jq_expr" "{{ draw }}/$name.yaml" >"{{ draw }}/$name-overview.yaml"
-        keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$name-overview.yaml" $layout \
+        keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$name-overview.yaml" "${layout[@]}" \
             >"{{ draw }}/$name-overview.svg"
         # Portable in-place edit (BSD sed has no GNU-compatible `-i`).
         overview="{{ draw }}/$name-overview.svg"

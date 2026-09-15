@@ -1,0 +1,17 @@
+/*
+ * Drawing input only -- never built as firmware.
+ *
+ * Every board here runs the same 34-key keymap, padded out to its physical key
+ * count by an adapter. This is that keymap with no padding, which is the
+ * honest picture of the layout: no dead outer columns, no dead outer thumbs.
+ *
+ * It is deliberately not in config/ -- ZMK resolves keymaps by shield-name
+ * prefix and this matches no shield, but a stray .keymap there invites
+ * confusion. When the 34-key Pocket Keyboard exists it gets a real entry
+ * keymap in config/ that looks exactly like this.
+ */
+
+#define CONFIG_WIRELESS
+
+#include <zmk-helpers/key-labels/34.h>
+#include "../config/base.keymap"

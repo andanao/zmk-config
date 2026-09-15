@@ -152,7 +152,7 @@ parse_config:
 draw_config:
   append_colon_to_layer_header: false
   dark_mode: false
-  footer_text: "andanao/zmk-config"
+  footer_text: ""   # collides with bottom-aligned combos, and the repo name is in the readme
   glyph_tap_size: 15
   glyph_hold_size: 12
   glyph_shifted_size: 10
