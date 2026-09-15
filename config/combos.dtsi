@@ -47,8 +47,8 @@ ZMK_COMBO(alt_x,       &kp LA(X),          LB3 LM3)         // X + S
  * into flashing mode alone. Five keys and a wider window: impossible to hit by
  * accident, deliberate to hit on purpose. Note combos are processed on the
  * central, so the right-hand one still needs the halves connected. */
-ZMK_COMBO(boot_l,      &bootloader,        LT4 LT2 LT0 LB4 LH0, DEF LOWER RAISE NUM ADMIN, 200)
-ZMK_COMBO(boot_r,      &bootloader,        RT0 RT2 RT4 RB4 RH0, DEF LOWER RAISE NUM ADMIN, 200)
+ZMK_COMBO(boot_l,      &bootloader,        LT4 LT2 LT0 LB4 LH0, DEF NAV NUM ADMIN, 200)
+ZMK_COMBO(boot_r,      &bootloader,        RT0 RT2 RT4 RB4 RH0, DEF NAV NUM ADMIN, 200)
 
 /* Navigation — same-column or same-finger, so none of these can be rolled into.
  * Puts the paging cluster within reach without holding a layer. */
@@ -58,7 +58,6 @@ ZMK_COMBO(home,        &kp HOME,           LB3 LB2)         // X + C
 ZMK_COMBO(end,         &kp END,            LB2 LB1)         // C + V
 
 /* Layer access */
-ZMK_COMBO(num_layer,   &mo NUM,            LM2 LM3)         // D + S
 ZMK_COMBO(admin_layer, &mo ADMIN,          RH0 RB4)         // inner thumb + /
 
 /* Whitespace & deletion */

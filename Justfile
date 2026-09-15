@@ -140,28 +140,24 @@ draw expr="all": _check_yq_version
         keymap -c "{{ draw }}/config.yaml" draw "{{ draw }}/$name.yaml" $layout \
             >"{{ draw }}/$name.svg"
 
-        # Condensed overview: fold the four non-base layers into corner legends
-        # on the base layer. tl=Raise, tr=Lower, bl=Num, br=Admin — matching the
+        # Condensed overview: fold the three non-base layers into corner legends
+        # on the base layer: tr=Nav, bl=Num, br=Admin — matching the
         # --color-* variables in draw/config.yaml.
         #
-        # Duplicate legends are dropped: several keys carry the same binding on
-        # more than one layer (Lower and Raise share the whole left home row),
-        # and printing it in two corners just overprints. A legend is skipped if
-        # the base key's tap or hold already shows it, or if an earlier corner
-        # claimed it.
+        # Duplicate legends are dropped: a legend is skipped if the base key's
+        # tap or hold already shows it, or if an earlier corner claimed it.
         jq_expr='
             def extract_label: if type == "string" then . else .t end;
             def is_transparent: type == "object" and (.type == "trans" or .type == "held");
             def legend: if . == null or is_transparent then null else extract_label end;
             .layers = {
             Base: [
-                [.layers.Base, .layers.Lower, .layers.Raise, .layers.Num, .layers.Admin] | transpose[] |
+                [.layers.Base, .layers.Nav, .layers.Num, .layers.Admin] | transpose[] |
                 (.[0] | if type == "string" then {t: .} else . end) as $base |
                 [$base.t // empty, $base.h // empty] as $seen |
                 [["tr", (.[1] | legend)],
-                 ["tl", (.[2] | legend)],
-                 ["bl", (.[3] | legend)],
-                 ["br", (.[4] | legend)]] as $corners |
+                 ["bl", (.[2] | legend)],
+                 ["br", (.[3] | legend)]] as $corners |
                 (reduce $corners[] as $c
                     ({seen: $seen, out: {}};
                      if $c[1] != null and (.seen | index($c[1])) == null

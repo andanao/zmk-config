@@ -204,7 +204,7 @@ draw_config:
     text.combo.hold, text.combo.shifted, text.combo.left, text.combo.right { font-size: 8px; }
 
     /* Without colour the overview's corner legends are told apart by position
-       alone: tl=Raise, tr=Lower, bl=Num, br=Admin. Grey keeps them from
+       alone: tr=Nav, bl=Num, br=Admin. Grey keeps them from
        competing with the base-layer legend in the middle of the key. */
     text.tl, text.tr, text.bl, text.br,
     use.tl, use.tr, use.bl, use.br { fill: #555; }
