@@ -71,8 +71,8 @@ ZMK_COMBO(del,         &kp DEL,            RM1 RM3)         // J + L
 
 /* Symbols */
 ZMK_COMBO(asterisk,    &kp ASTERISK,       RT0 RT1)         // Y + U
-ZMK_COMBO(minus,       &kp KP_MINUS,       RM0 RM1)         // H + J
-ZMK_COMBO(plus,        &kp KP_PLUS,        RB0 RB1)         // N + M
+ZMK_COMBO(minus,       &kp MINUS,          RM0 RM1)         // H + J
+ZMK_COMBO(plus,        &kp PLUS,            RB0 RB1)         // N + M
 ZMK_COMBO(equal,       &kp EQUAL,          RM1 RB1)         // J + M
 ZMK_COMBO(underscore,  &kp UNDERSCORE,     RM0 RB0)         // H + N
 ZMK_COMBO(lbkt,        &kp LBKT,           RM2 RB2)         // K + ,
