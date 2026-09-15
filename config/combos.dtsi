@@ -73,6 +73,7 @@ ZMK_COMBO(asterisk,    &kp ASTERISK,       RT0 RT1)         // Y + U
 ZMK_COMBO(hash,        &kp HASH,           LM1 LM0)         // F + G
 ZMK_COMBO(caret,       &kp CARET,          RT0 RM0)         // Y + H
 ZMK_COMBO(pipe,        &kp PIPE,           RB3 RB4)         // . + /
+ZMK_COMBO(bslh,        &kp BSLH,           RB2 RB4)         // , + /
 ZMK_COMBO(grave,       &kp GRAVE,          RM3 RM4)         // L + ;
 ZMK_COMBO(amps,        &kp AMPS,           LB1 LB0)         // V + B
 ZMK_COMBO(excl,        &kp EXCL,           LT4 LT3)         // Q + W
