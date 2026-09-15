@@ -8,7 +8,6 @@ parse_config:
   raw_binding_map:
     "&sys_reset": Reset
     "&bootloader": Boot
-    "&caps_word": Caps Word
 
     "&bt BT_SEL 0": BT 1
     "&bt BT_SEL 1": BT 2
@@ -18,7 +17,6 @@ parse_config:
     "&bt BT_CLR": BT Clr
 
     "&kp RC(C)": Copy
-    "&kp RC(X)": Cut
     "&kp RC(V)": Paste
     "&kp RC(BSPC)": Del Word
     "&kp LS(TAB)": Shift Tab
@@ -26,10 +24,15 @@ parse_config:
   trans_legend: { "t": "", "type": "trans" }
 
   zmk_combos:
+    # The bootloader combos span five keys across a whole hand, so keymap-drawer
+    # runs their dendrites over everything else. They are muscle memory, not
+    # something to look up on a diagram.
+    combo_boot_l: { hidden: true }
+    combo_boot_r: { hidden: true }
+
     # Nudge combos that would otherwise collide with a neighbour sharing a key.
     combo_del: { o: 0.4 }
     combo_equal: { o: 0.3 }
-    combo_caps_word: { align: top, o: 0.5 }
 
   zmk_keycode_map:
     # custom mappings

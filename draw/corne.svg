@@ -1041,24 +1041,6 @@ text.footer { text-anchor: end; dominant-baseline: auto; }
 <rect rx="6" ry="6" x="126" y="106" width="28" height="26" class="combo"/>
 <text x="140" y="119" class="combo tap">Alt+X</text>
 </g>
-<g class="combo combopos-10">
-<path d="M205,101 l-103,-44" class="combo"/>
-<path d="M205,101 l-6,-54" class="combo"/>
-<path d="M205,101 l87,-50" class="combo"/>
-<path d="M205,101 l-104,52" class="combo"/>
-<path d="M205,101 l132,111" class="combo"/>
-<rect rx="6" ry="6" x="191" y="88" width="28" height="26" class="combo"/>
-<text x="205" y="101" class="combo tap">Boot</text>
-</g>
-<g class="combo combopos-11">
-<path d="M635,101 l-87,-50" class="combo"/>
-<path d="M635,101 l6,-54" class="combo"/>
-<path d="M635,101 l103,-44" class="combo"/>
-<path d="M635,101 l104,52" class="combo"/>
-<path d="M635,101 l-132,111" class="combo"/>
-<rect rx="6" ry="6" x="621" y="88" width="28" height="26" class="combo"/>
-<text x="635" y="101" class="combo tap">Boot</text>
-</g>
 <g class="combo combopos-12">
 <rect rx="6" ry="6" x="294" y="57" width="28" height="26" class="combo"/>
 <text x="308" y="70" class="combo tap">PgUp</text>
