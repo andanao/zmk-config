@@ -33,12 +33,11 @@ parse_config:
     # Combos that skip over a key, or span most of a hand, get drawn below the
     # board instead of on it -- their dendrites otherwise cross unrelated keys
     # and make the whole layer hard to read.
-    combo_dllr:  { align: top,    o: 0.6 }
-    combo_prcnt: { align: top,    o: 1.8 }
-    combo_del:   { align: top,    o: 3.0 }
-    combo_sqt:   { align: bottom, o: 3.2 }
-    combo_bslh:  { align: bottom, o: 1.8 }
-    combo_admin_layer: { draw_separate: true }
+    combo_dllr:  { align: top,    o: 1.0 }
+    combo_prcnt: { align: top,    o: 2.6 }
+    combo_del:   { align: top,    o: 4.2 }
+    combo_bslh:  { align: bottom, o: 1.2, slide: -1.0 }
+    combo_admin_layer: { o: 0.4 }
 
     # Nudge combos that would otherwise collide with a neighbour sharing a key.
     combo_equal: { o: 0.3 }

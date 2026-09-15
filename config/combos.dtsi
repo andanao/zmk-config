@@ -79,7 +79,7 @@ ZMK_COMBO(excl,        &kp EXCL,           LT4 LT3)         // Q + W
 ZMK_COMBO(at,          &kp AT,             LB4 LB3)         // Z + X
 ZMK_COMBO(dllr,        &kp DLLR,           RT0 RT2)         // Y + I
 ZMK_COMBO(prcnt,       &kp PRCNT,          RM0 RM2)         // H + K
-ZMK_COMBO(sqt,         &kp SQT,            RM1 RM4)         // J + ;
+ZMK_COMBO(sqt,         &kp SQT,            LM2 LM3)         // D + S
 ZMK_COMBO(minus,       &kp MINUS,          RM0 RM1)         // H + J
 ZMK_COMBO(plus,        &kp PLUS,            RB0 RB1)         // N + M
 ZMK_COMBO(underscore,  &kp UNDERSCORE,     RM1 RB1)         // J + M
