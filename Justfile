@@ -62,13 +62,10 @@ build expr *west_args:
         just _build_single "$board" "$shield" "$snippet" "$artifact" "$cmake_args" {{ west_args }}
     done
 
-# build targets matching <expr>, then copy each onto its board as it appears
-#
 # Waits for a UF2 bootloader volume per half, prints which board it caught, and
-# waits for the reboot before moving to the next -- so the two halves of a
-# split can't accidentally get the same image. Every target here is UF2;
+# waits for the reboot before moving to the next. Every target here is UF2;
 # `west flash` would need an SWD probe.
-[doc('build <expr>, then copy each firmware onto its board')]
+[doc('build <expr> and flash the LEFT half (see flash-both)')]
 [group('build & draw')]
 flash expr: (build expr)
     #!/usr/bin/env bash
@@ -82,12 +79,32 @@ flash expr: (build expr)
         files+=("{{ out }}/$artifact.uf2")
     done <<<"$targets"
 
+    # Default to the left half only: it is the split central, so it holds the
+    # keymap and is the half a keymap change actually needs. Falls back to the
+    # full match when nothing matched is a left half, so `just flash <x>_right`
+    # still does what it says.
+    left=()
+    for f in "${files[@]}"; do [[ "$f" == *_left.uf2 ]] && left+=("$f"); done
+    [[ ${#left[@]} -gt 0 ]] && files=("${left[@]}")
+
     {{ justfile_directory() }}/scripts/flash-uf2.sh "${files[@]}"
 
-# copy already-built .uf2 files onto boards as their bootloaders appear
-#
-# For firmware that isn't a plain build target, e.g.
-# `just flash-file firmware/corne6_left-studio.uf2`.
+[doc('build <expr> and flash every matching half')]
+[group('build & draw')]
+flash-both expr: (build expr)
+    #!/usr/bin/env bash
+    set -euo pipefail
+    targets=$(just build_matrix={{build_matrix}} _parse_targets {{ expr }})
+
+    [[ -z $targets ]] && echo "No matching targets found. Aborting..." >&2 && exit 1
+    files=()
+    while IFS=, read -r board shield snippet artifact cmake_args; do
+        artifact="${artifact:-${shield:+${shield// /+}-}${board//\//_}}"
+        files+=("{{ out }}/$artifact.uf2")
+    done <<<"$targets"
+
+    {{ justfile_directory() }}/scripts/flash-uf2.sh "${files[@]}"
+
 [doc('copy already-built .uf2 files onto boards')]
 [group('build & draw')]
 flash-file +files:
